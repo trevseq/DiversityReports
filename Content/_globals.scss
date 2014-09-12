@@ -1,0 +1,76 @@
+@import "_mixins.scss";
+
+// Title bar
+.navbar {
+    width: 100%;
+    //margin-left: 12%;
+    position: fixed;
+    overflow: auto;
+    text-align: center;
+    display: inline-block;
+    color: floralwhite;
+    white-space: nowrap;
+    font-size: xx-large;
+    @include transform(translateZ(0));
+    //@include boxShadow(10px, 10px, 5px, #888888);
+    //@include borderRadius(15px)
+}
+
+// Invoice table
+.table {
+    thead > tr > .no-line { border-bottom: none; }
+    tbody > tr {
+        .thick-line { border-top: 2px solid; }
+        .no-line { border-top: none; }
+    }
+    tfoot > tr {
+        .no-line { border-top: none; }
+        .thick-line { border-top: 2px solid; }
+    }
+}
+
+// Inputs
+input, textarea, button { margin-top:10px }
+
+// Required field
+.required-field-block {
+    position: relative;
+    .required-icon {
+        display: inline-block;
+        vertical-align: middle;
+        margin: -0.25em 0.25em 0em;
+        background-color: #E8E8E8;
+        border-color: #E8E8E8;
+        padding: 0.5em 0.8em; 
+        color: rgba(0, 0, 0, 0.65);
+        text-transform: uppercase;
+        font-size: 75%;
+        font-weight: normal;
+        border-radius: 0.325em;
+        @include box-sizing(border-box);
+        @include transition(background, 0.1s, linear);
+        :after {
+            position: absolute;
+            content: "";
+            right: 1px;
+            top: 1px;
+            z-index: -1;
+            width: 0em;
+            height: 0em;
+            border-top: 0em solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 30px solid transparent;
+            border-left: 0em solid transparent;
+            border-right-color: inherit;
+            @include transition(border-color, 0.2s, ease);
+            }
+        .text {
+	        color: #B80000;
+	        font-size: 26px;
+	        margin: -3px 0 0 12px;
+            }
+        }
+}
+
+// Set padding to display errors that occur during databinding
+.padding-error { padding-top: 20px; }

@@ -1,24 +1,178 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
+/* Responsive Breakpoints
+   ========================================================================== */
+/* Sub-section comment block
+   ========================================================================== */
+/* Clearfix
+  ========================================================================== */
+/* Box Model
+  ========================================================================== */
+/* Border Radius
+  ========================================================================== */
+/* Opacity
+  ========================================================================== */
+/* Center-align a block level element
+  ========================================================================== */
+/* Text overflow
+  ========================================================================== */
+/* Absolute positioned
+  ========================================================================== */
+/* Font Size
+  ========================================================================== */
+/* Cross browser inline block
+  ========================================================================== */
+/* Text replacement (instead of text-indent)
+  ========================================================================== */
+/* Line Height
+  ========================================================================== */
+/* Placeholder
+  ========================================================================== */
+.navbar {
+  width: 100%;
+  position: fixed;
+  overflow: auto;
+  text-align: center;
+  display: inline-block;
+  color: floralwhite;
+  white-space: nowrap;
+  font-size: xx-large;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0); }
 
-/* Set padding to keep content from hitting the edges */
+.table thead > tr > .no-line {
+  border-bottom: none; }
+.table tbody > tr .thick-line {
+  border-top: 2px solid; }
+.table tbody > tr .no-line {
+  border-top: none; }
+.table tfoot > tr .no-line {
+  border-top: none; }
+.table tfoot > tr .thick-line {
+  border-top: 2px solid; }
+
+input, textarea, button {
+  margin-top: 10px; }
+
+.required-field-block {
+  position: relative; }
+  .required-field-block .required-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin: -0.25em 0.25em 0em;
+    background-color: #E8E8E8;
+    border-color: #E8E8E8;
+    padding: 0.5em 0.8em;
+    color: rgba(0, 0, 0, 0.65);
+    text-transform: uppercase;
+    font-size: 75%;
+    font-weight: normal;
+    border-radius: 0.325em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    transition: background 0.1s linear ;
+    -webkit-transition: background 0.1s linear ; }
+    .required-field-block .required-icon :after {
+      position: absolute;
+      content: "";
+      right: 1px;
+      top: 1px;
+      z-index: -1;
+      width: 0em;
+      height: 0em;
+      border-top: 0em solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 30px solid transparent;
+      border-left: 0em solid transparent;
+      border-right-color: inherit;
+      transition: border-color 0.2s ease ;
+      -webkit-transition: border-color 0.2s ease ; }
+    .required-field-block .required-icon .text {
+      color: #B80000;
+      font-size: 26px;
+      margin: -3px 0 0 12px; }
+
+.padding-error {
+  padding-top: 20px; }
+
+/* Responsive Breakpoints
+   ========================================================================== */
+/* Sub-section comment block
+   ========================================================================== */
+/* Clearfix
+  ========================================================================== */
+/* Box Model
+  ========================================================================== */
+/* Border Radius
+  ========================================================================== */
+/* Opacity
+  ========================================================================== */
+/* Center-align a block level element
+  ========================================================================== */
+/* Text overflow
+  ========================================================================== */
+/* Absolute positioned
+  ========================================================================== */
+/* Font Size
+  ========================================================================== */
+/* Cross browser inline block
+  ========================================================================== */
+/* Text replacement (instead of text-indent)
+  ========================================================================== */
+/* Line Height
+  ========================================================================== */
+/* Placeholder
+  ========================================================================== */
+/*************** Pregenerated *********************/
+body {
+  padding-top: 50px;
+  padding-bottom: 20px; }
+
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+  padding-left: 15px;
+  padding-right: 15px; }
 
 /* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+*  will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
-    white-space: normal;
-}
+  white-space: normal; }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
+input, select, textarea {
+  max-width: 280px; }
+
+.navbar {
+  background: #2a5e99;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #2a5e99 0%, #6bb0e5 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2a5e99), color-stop(100%, #6bb0e5));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #2a5e99 0%, #6bb0e5 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #2a5e99 0%, #6bb0e5 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #2a5e99 0%, #6bb0e5 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #2a5e99 0%, #6bb0e5 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2a5e99', endColorstr='#6bb0e5',GradientType=0 );
+  /* IE6-9 */
+  border: none !important;
+  width: 65%;
+  margin-left: 17.5%;
+  -webkit-box-shadow: 10px 10px 5px #888888 ;
+  -moz-box-shadow: 10px 10px 5px #888888 ;
+  box-shadow: 10px 10px 5px #888888 ;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */
+  margin-top: 5px !important; }
+
+.navbar-header {
+  color: black;
+  font: bold; }
+
