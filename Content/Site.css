@@ -125,14 +125,25 @@ input, textarea, button {
   ========================================================================== */
 /* Placeholder
   ========================================================================== */
-/*************** Pregenerated *********************/
+html, body {
+  height: 100%; }
+
 body {
   padding-top: 50px;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  background-color: #cccccc;
+  font-family: 'OpenSans'; }
+
+footer {
+  position: relative;
+  height: 5%;
+  width: 90%; }
 
 .body-content {
   padding-left: 15px;
-  padding-right: 15px; }
+  padding-right: 15px;
+  height: 100%;
+  min-height: 100%; }
 
 /* Override the default bootstrap behavior where horizontal description lists 
 *  will truncate terms that are too long to fit in the left column 
@@ -161,8 +172,8 @@ input, select, textarea {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2a5e99', endColorstr='#6bb0e5',GradientType=0 );
   /* IE6-9 */
   border: none !important;
-  width: 65%;
-  margin-left: 17.5%;
+  width: 85%;
+  margin-left: 7.5%;
   -webkit-box-shadow: 10px 10px 5px #888888 ;
   -moz-box-shadow: 10px 10px 5px #888888 ;
   box-shadow: 10px 10px 5px #888888 ;
@@ -173,6 +184,24 @@ input, select, textarea {
   margin-top: 5px !important; }
 
 .navbar-header {
-  color: black;
-  font: bold; }
+  width: 100%; }
+  .navbar-header p {
+    text-align: center;
+    color: #171515;
+    font-weight: 900; }
+
+#mainContainer {
+  width: 94%;
+  margin-left: 3%;
+  margin-top: 5%;
+  height: 84%;
+  background-color: #eae2e2;
+  padding: 2%;
+  -webkit-box-shadow: 10px 10px 5px #888888 ;
+  -moz-box-shadow: 10px 10px 5px #888888 ;
+  box-shadow: 10px 10px 5px #888888 ;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */ }
 
