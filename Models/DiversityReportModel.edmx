@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ADP_FeedModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EEOSurvey">
+          <Key>
+            <PropertyRef Name="EEOSurveyID" />
+          </Key>
+          <Property Name="EEOSurveyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="Gender" Type="varchar" MaxLength="500" />
+          <Property Name="EthnicityID" Type="int" />
+          <Property Name="USMilitary" Type="bit" />
+          <Property Name="LGBT" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="EnteredByAdmin" Type="bit" />
+          <Property Name="VisuallyIdentifyAdmin" Type="int" />
+          <Property Name="EEO1Category" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ADP_Feed.dbo.Employees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="EmployeeIDEncrypted" Type="nvarchar" MaxLength="2000" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="800" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="800" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="800" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="800" />
+          <Property Name="City" Type="nvarchar" MaxLength="800" />
+          <Property Name="State" Type="nvarchar" MaxLength="800" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="800" />
+          <Property Name="HomeEmail" Type="nvarchar" MaxLength="800" />
+          <Property Name="HomeFax" Type="nvarchar" MaxLength="800" />
+          <Property Name="HomePhone" Type="nvarchar" MaxLength="800" />
+          <Property Name="HomePhone2" Type="nvarchar" MaxLength="800" />
+          <Property Name="PersonalWireless" Type="nvarchar" MaxLength="800" />
+          <Property Name="PersonalPager" Type="nvarchar" MaxLength="800" />
+          <Property Name="SecondaryAddress" Type="nvarchar" MaxLength="800" />
+          <Property Name="SecondaryCity" Type="nvarchar" MaxLength="800" />
+          <Property Name="SecondaryState" Type="nvarchar" MaxLength="800" />
+          <Property Name="SecondaryZip" Type="nvarchar" MaxLength="800" />
+          <Property Name="SecondaryPhone" Type="nvarchar" MaxLength="800" />
+          <Property Name="SpouseOrPartner" Type="nvarchar" MaxLength="800" />
+          <Property Name="ConfidentialAddress" Type="nvarchar" MaxLength="800" />
+          <Property Name="ForeignLanguageSpoken" Type="nvarchar" MaxLength="800" />
+          <Property Name="JobTitle" Type="int" />
+          <Property Name="Department" Type="int" />
+          <Property Name="Location" Type="nvarchar" MaxLength="800" />
+          <Property Name="WorkPhone" Type="nvarchar" MaxLength="800" />
+          <Property Name="WorkFax" Type="nvarchar" MaxLength="800" />
+          <Property Name="WorkEmail" Type="nvarchar" MaxLength="800" />
+          <Property Name="RoomNumber" Type="nvarchar" MaxLength="800" />
+          <Property Name="HireDate" Type="datetime" />
+          <Property Name="TerminationDate" Type="datetime" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="BillingRate" Type="money" />
+          <Property Name="PreferredName" Type="nvarchar" MaxLength="800" />
+          <Property Name="MiddleInitial" Type="nvarchar" MaxLength="800" />
+          <Property Name="PreferredLastName" Type="nvarchar" MaxLength="800" />
+          <Property Name="PreferredFirstName" Type="nvarchar" MaxLength="800" />
+          <Property Name="PreferredMiddleName" Type="nvarchar" MaxLength="800" />
+          <Property Name="IsListPreferredNameFirst" Type="bit" />
+          <Property Name="TechnologyActive" Type="nvarchar" MaxLength="800" />
+          <Property Name="StatusType" Type="varchar" MaxLength="800" />
+          <Property Name="ClassYear" Type="nvarchar" MaxLength="5" />
+          <Property Name="TreatedAsYear" Type="nvarchar" MaxLength="5" />
+          <Property Name="EEOCategory_ID" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Ethnicity">
+          <Key>
+            <PropertyRef Name="EthnicityID" />
+          </Key>
+          <Property Name="EthnicityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ethnicity" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'ADP_Feed.dbo.VisuallyIdentify' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="VisuallyIdentify">
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="EthnicityID" Type="int" />
+        </EntityType>-->
+        <EntityContainer Name="ADP_FeedModelStoreContainer">
+          <EntitySet Name="EEOSurvey" EntityType="Self.EEOSurvey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ethnicity" EntityType="Self.Ethnicity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Employees].[EmployeeID] AS [EmployeeID], 
+    [Employees].[EmployeeIDEncrypted] AS [EmployeeIDEncrypted], 
+    [Employees].[LastName] AS [LastName], 
+    [Employees].[FirstName] AS [FirstName], 
+    [Employees].[Gender] AS [Gender], 
+    [Employees].[StreetAddress] AS [StreetAddress], 
+    [Employees].[City] AS [City], 
+    [Employees].[State] AS [State], 
+    [Employees].[Zip] AS [Zip], 
+    [Employees].[HomeEmail] AS [HomeEmail], 
+    [Employees].[HomeFax] AS [HomeFax], 
+    [Employees].[HomePhone] AS [HomePhone], 
+    [Employees].[HomePhone2] AS [HomePhone2], 
+    [Employees].[PersonalWireless] AS [PersonalWireless], 
+    [Employees].[PersonalPager] AS [PersonalPager], 
+    [Employees].[SecondaryAddress] AS [SecondaryAddress], 
+    [Employees].[SecondaryCity] AS [SecondaryCity], 
+    [Employees].[SecondaryState] AS [SecondaryState], 
+    [Employees].[SecondaryZip] AS [SecondaryZip], 
+    [Employees].[SecondaryPhone] AS [SecondaryPhone], 
+    [Employees].[SpouseOrPartner] AS [SpouseOrPartner], 
+    [Employees].[ConfidentialAddress] AS [ConfidentialAddress], 
+    [Employees].[ForeignLanguageSpoken] AS [ForeignLanguageSpoken], 
+    [Employees].[JobTitle] AS [JobTitle], 
+    [Employees].[Department] AS [Department], 
+    [Employees].[Location] AS [Location], 
+    [Employees].[WorkPhone] AS [WorkPhone], 
+    [Employees].[WorkFax] AS [WorkFax], 
+    [Employees].[WorkEmail] AS [WorkEmail], 
+    [Employees].[RoomNumber] AS [RoomNumber], 
+    [Employees].[HireDate] AS [HireDate], 
+    [Employees].[TerminationDate] AS [TerminationDate], 
+    [Employees].[DateOfBirth] AS [DateOfBirth], 
+    [Employees].[BillingRate] AS [BillingRate], 
+    [Employees].[PreferredName] AS [PreferredName], 
+    [Employees].[MiddleInitial] AS [MiddleInitial], 
+    [Employees].[PreferredLastName] AS [PreferredLastName], 
+    [Employees].[PreferredFirstName] AS [PreferredFirstName], 
+    [Employees].[PreferredMiddleName] AS [PreferredMiddleName], 
+    [Employees].[IsListPreferredNameFirst] AS [IsListPreferredNameFirst], 
+    [Employees].[TechnologyActive] AS [TechnologyActive], 
+    [Employees].[StatusType] AS [StatusType], 
+    [Employees].[ClassYear] AS [ClassYear], 
+    [Employees].[TreatedAsYear] AS [TreatedAsYear], 
+    [Employees].[EEOCategory_ID] AS [EEOCategory_ID], 
+    [Employees].[CreateDate] AS [CreateDate]
+    FROM [dbo].[Employees] AS [Employees]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ADP_FeedModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EEOSurvey">
+          <Key>
+            <PropertyRef Name="EEOSurveyID" />
+          </Key>
+          <Property Name="EEOSurveyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="Gender" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EthnicityID" Type="Int32" />
+          <Property Name="USMilitary" Type="Boolean" />
+          <Property Name="LGBT" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="EnteredByAdmin" Type="Boolean" />
+          <Property Name="VisuallyIdentifyAdmin" Type="Int32" />
+          <Property Name="EEO1Category" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Ethnicity">
+          <Key>
+            <PropertyRef Name="EthnicityID" />
+          </Key>
+          <Property Name="EthnicityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ethnicity1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeIDEncrypted" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddress" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="HomeEmail" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="HomeFax" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="HomePhone" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="HomePhone2" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalWireless" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalPager" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="SecondaryAddress" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="SecondaryCity" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="SecondaryState" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="SecondaryZip" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="SecondaryPhone" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="SpouseOrPartner" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="ConfidentialAddress" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="ForeignLanguageSpoken" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="JobTitle" Type="Int32" />
+          <Property Name="Department" Type="Int32" />
+          <Property Name="Location" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="WorkPhone" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="WorkFax" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="WorkEmail" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="RoomNumber" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Precision="3" />
+          <Property Name="TerminationDate" Type="DateTime" Precision="3" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="BillingRate" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PreferredName" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleInitial" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="PreferredLastName" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="PreferredFirstName" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="PreferredMiddleName" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="IsListPreferredNameFirst" Type="Boolean" />
+          <Property Name="TechnologyActive" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="StatusType" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="ClassYear" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="TreatedAsYear" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="EEOCategory_ID" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="ADP_FeedEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EEOSurveys" EntityType="Self.EEOSurvey" />
+          <EntitySet Name="Ethnicities" EntityType="Self.Ethnicity" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ADP_FeedModelStoreContainer" CdmEntityContainer="ADP_FeedEntities">
+          <EntitySetMapping Name="EEOSurveys">
+            <EntityTypeMapping TypeName="ADP_FeedModel.EEOSurvey">
+              <MappingFragment StoreEntitySet="EEOSurvey">
+                <ScalarProperty Name="EEOSurveyID" ColumnName="EEOSurveyID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EthnicityID" ColumnName="EthnicityID" />
+                <ScalarProperty Name="USMilitary" ColumnName="USMilitary" />
+                <ScalarProperty Name="LGBT" ColumnName="LGBT" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="EnteredByAdmin" ColumnName="EnteredByAdmin" />
+                <ScalarProperty Name="VisuallyIdentifyAdmin" ColumnName="VisuallyIdentifyAdmin" />
+                <ScalarProperty Name="EEO1Category" ColumnName="EEO1Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ethnicities">
+            <EntityTypeMapping TypeName="ADP_FeedModel.Ethnicity">
+              <MappingFragment StoreEntitySet="Ethnicity">
+                <ScalarProperty Name="EthnicityID" ColumnName="EthnicityID" />
+                <ScalarProperty Name="Ethnicity1" ColumnName="Ethnicity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="ADP_FeedModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeIDEncrypted" ColumnName="EmployeeIDEncrypted" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="HomeEmail" ColumnName="HomeEmail" />
+                <ScalarProperty Name="HomeFax" ColumnName="HomeFax" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="HomePhone2" ColumnName="HomePhone2" />
+                <ScalarProperty Name="PersonalWireless" ColumnName="PersonalWireless" />
+                <ScalarProperty Name="PersonalPager" ColumnName="PersonalPager" />
+                <ScalarProperty Name="SecondaryAddress" ColumnName="SecondaryAddress" />
+                <ScalarProperty Name="SecondaryCity" ColumnName="SecondaryCity" />
+                <ScalarProperty Name="SecondaryState" ColumnName="SecondaryState" />
+                <ScalarProperty Name="SecondaryZip" ColumnName="SecondaryZip" />
+                <ScalarProperty Name="SecondaryPhone" ColumnName="SecondaryPhone" />
+                <ScalarProperty Name="SpouseOrPartner" ColumnName="SpouseOrPartner" />
+                <ScalarProperty Name="ConfidentialAddress" ColumnName="ConfidentialAddress" />
+                <ScalarProperty Name="ForeignLanguageSpoken" ColumnName="ForeignLanguageSpoken" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="WorkFax" ColumnName="WorkFax" />
+                <ScalarProperty Name="WorkEmail" ColumnName="WorkEmail" />
+                <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="BillingRate" ColumnName="BillingRate" />
+                <ScalarProperty Name="PreferredName" ColumnName="PreferredName" />
+                <ScalarProperty Name="MiddleInitial" ColumnName="MiddleInitial" />
+                <ScalarProperty Name="PreferredLastName" ColumnName="PreferredLastName" />
+                <ScalarProperty Name="PreferredFirstName" ColumnName="PreferredFirstName" />
+                <ScalarProperty Name="PreferredMiddleName" ColumnName="PreferredMiddleName" />
+                <ScalarProperty Name="IsListPreferredNameFirst" ColumnName="IsListPreferredNameFirst" />
+                <ScalarProperty Name="TechnologyActive" ColumnName="TechnologyActive" />
+                <ScalarProperty Name="StatusType" ColumnName="StatusType" />
+                <ScalarProperty Name="ClassYear" ColumnName="ClassYear" />
+                <ScalarProperty Name="TreatedAsYear" ColumnName="TreatedAsYear" />
+                <ScalarProperty Name="EEOCategory_ID" ColumnName="EEOCategory_ID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
