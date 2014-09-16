@@ -134,6 +134,11 @@ body {
   background-color: #cccccc;
   font-family: 'OpenSans'; }
 
+.navbar-fixed-top {
+  width: 85% !important;
+  margin-left: 7.5% !important;
+  overflow: hidden !important; }
+
 footer {
   position: relative;
   height: 5%;
@@ -186,8 +191,9 @@ input, select, textarea {
 .navbar-header {
   width: 100%; }
   .navbar-header p {
+    margin-left: -10%;
     text-align: center;
-    color: #171515;
+    color: floralwhite;
     font-weight: 900; }
 
 #mainContainer {
@@ -195,7 +201,7 @@ input, select, textarea {
   margin-left: 3%;
   margin-top: 5%;
   height: 84%;
-  background-color: #eae2e2;
+  background-color: #f8f8f8;
   padding: 2%;
   -webkit-box-shadow: 10px 10px 5px #888888 ;
   -moz-box-shadow: 10px 10px 5px #888888 ;
@@ -204,4 +210,8 @@ input, select, textarea {
   border-radius: 15px;
   background-clip: padding-box;
   /* stops bg color from leaking outside the border: */ }
+
+#pqDbGrid {
+  width: auto !important;
+  height: inherit !important; }
 

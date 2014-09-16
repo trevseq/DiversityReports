@@ -52,7 +52,8 @@ function InitializeGrid() {
 
     var $grid = $("#pqDbGrid").pqGrid(obj);
 
-    $grid.pqGrid("option", "topVisible", false);
+    $grid.pqGrid("option", "topVisible", true);
+    $grid.pqGrid("option", "title", "Diversity Reports Editor");
     $grid.pqGrid("option", "bottomVisible", true);
     $grid.pqGrid("option", "columnBorders", true);
     $grid.pqGrid("option", "rowBorders", true);
@@ -61,9 +62,9 @@ function InitializeGrid() {
     $grid.pqGrid("option", "flexHeight", false);
     $grid.pqGrid("option", "flexWidth", false);
     $grid.pqGrid("option", "scrollModel", { horizontal: true, });
-    $grid.pqGrid("option", "resizable", true);
+    $grid.pqGrid("option", "resizable", false);
     $grid.pqGrid("option", "sortable", true);
-    $grid.pqGrid("option", "roundCorners", true);
+    $grid.pqGrid("option", "roundCorners", false);
     $grid.pqGrid("option", "editable", true);
     $grid.pqGrid("option", "selectionModel", { type: 'row', mode: 'single' });
     $grid.pqGrid("option", "wrap", true);

@@ -24,14 +24,12 @@ namespace DiversityReports.Controllers
                         select new
                         {
                             p.EmployeeID,
-                            p.FirstName,
                             p.LastName,
-                            //Ethnicity = e.Ethnicity1,
-                            Viba = e.Ethnicity1,
-                            ethnicityID = s.EthnicityID
+                            p.FirstName,
+                            ethnicityID = s.EthnicityID,
+                            Viba = e.Ethnicity1
+                            
                         });
-
-
 
             return new JsonResult()
             {

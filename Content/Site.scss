@@ -12,9 +12,15 @@ body {
     font-family: 'OpenSans';
 }
 
+.navbar-fixed-top{
+    width: 85%!important;
+    margin-left: 7.5%!important;
+    overflow: hidden!important;
+}
+
 footer {
     position: relative;
-    height: 5%;
+    height: 5%; 
     width: 90%;
 }
 
@@ -66,8 +72,10 @@ input, select, textarea {
 .navbar-header {
     width: 100%;
     p {
+        margin-left: -10%;
         text-align: center;
-        color: #171515;
+        //color: #171515;
+        color: floralwhite;
         font-weight: 900;
     }
 }
@@ -77,8 +85,13 @@ input, select, textarea {
     margin-left: 3%;
     margin-top: 5%;
     height: 84%;
-    background-color: #eae2e2;
+    background-color: #f8f8f8;
     padding: 2%;
     @include boxShadow(10px, 10px, 5px, #888888);
     @include border-radius(15px);
+}
+
+#pqDbGrid{
+    width: auto!important;
+    height: inherit!important;
 }

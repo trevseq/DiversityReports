@@ -153,15 +153,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\pqgrid.min.css" />
-    <Content Include="Content\Site.css">
-      <DependentUpon>Site.scss</DependentUpon>
+    <Content Include="Content\site.css">
+      <DependentUpon>site.scss</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\Site.scss" />
+    <Content Include="Content\site.scss" />
     <Content Include="Content\_globals.scss" />
     <Content Include="Content\_mixins.scss" />
     <EntityDeploy Include="Models\DiversityReportModel.edmx">
@@ -183,21 +183,21 @@
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom.js" />
-    <Content Include="Scripts\images\cross.png" />
-    <Content Include="Scripts\images\horiz-bg.png" />
-    <Content Include="Scripts\images\horiz-slider-bg.png" />
-    <Content Include="Scripts\images\loading.gif" />
-    <Content Include="Scripts\images\page-first-gray.gif" />
-    <Content Include="Scripts\images\page-last-gray.gif" />
-    <Content Include="Scripts\images\page-next-gray.gif" />
-    <Content Include="Scripts\images\page-prev-gray.gif" />
-    <Content Include="Scripts\images\Refresh.gif" />
-    <Content Include="Scripts\images\sort_asc.gif" />
-    <Content Include="Scripts\images\sort_desc.gif" />
-    <Content Include="Scripts\images\sprite.png" />
-    <Content Include="Scripts\images\tick.png" />
-    <Content Include="Scripts\images\vert-bg.png" />
-    <Content Include="Scripts\images\vert-slider-bg.png" />
+    <Content Include="Content\images\cross.png" />
+    <Content Include="Content\images\horiz-bg.png" />
+    <Content Include="Content\images\horiz-slider-bg.png" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\page-first-gray.gif" />
+    <Content Include="Content\images\page-last-gray.gif" />
+    <Content Include="Content\images\page-next-gray.gif" />
+    <Content Include="Content\images\page-prev-gray.gif" />
+    <Content Include="Content\images\Refresh.gif" />
+    <Content Include="Content\images\sort_asc.gif" />
+    <Content Include="Content\images\sort_desc.gif" />
+    <Content Include="Content\images\sprite.png" />
+    <Content Include="Content\images\tick.png" />
+    <Content Include="Content\images\vert-bg.png" />
+    <Content Include="Content\images\vert-slider-bg.png" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -206,12 +206,13 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pqgrid.dev.js" />
     <Content Include="Scripts\pqgrid.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\themes\Office\images\column-header-bg.png" />
-    <Content Include="Scripts\themes\Office\images\column-header-over-bg.gif" />
-    <Content Include="Scripts\themes\Office\pqgrid.css" />
+    <Content Include="Content\themes\Office\images\column-header-bg.png" />
+    <Content Include="Content\themes\Office\images\column-header-over-bg.gif" />
+    <Content Include="Content\themes\Office\pqgrid.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
