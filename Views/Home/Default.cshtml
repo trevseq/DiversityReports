@@ -3,6 +3,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div id="mainContainer">
+    <div class="row">
+        <div class="col-sm-2">
+            <label for="txtSearch">Search Employees:</label>
+        </div>
+        <div class="col-sm-4">
+            <input type="text" id="txtSearch" />
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-2">
+            <a id="btnSearch" role="button" class="btn btn-primary">Search</a>
+        </div>
+    </div>
     <div id="pqDbGrid"></div>
     <div id="dlgEditProfile" style="display: none; padding:10px; margin:auto" title="Edit Entry">
         <ul>

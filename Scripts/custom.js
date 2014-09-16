@@ -8,8 +8,16 @@ pathName += ((pathName.substring(pathName.length - 1) != "/") ? "/" : "");
 pathName = location.protocol + "//" + location.host + pathName.replace("//", "/");
 
 $(document).on("ready", function () {
-    InitializeGrid();
+
+    InitializeGrid("sequino");
     PopulateEthDropdown();
+
+
+    /*========= Event Handlers ============*/
+    $('#btnSearch').on("click", function (e) {
+
+    });
+
 });
 
 function PopulateEthDropdown() {
@@ -27,93 +35,97 @@ function PopulateEthDropdown() {
     })
 }
 
-function InitializeGrid() {
-    var obj = { width: 1200, height: 700 };
-    var qUrl = pathName + "Home/PopulateGrid";
 
-    obj.colModel = [
-        { title: "Employee ID", width: 100, dataType: "string", editable: false, hidden: true},
-        { title: "Last Name", width: 200, dataType: "string", editable: false },
-        { title: "First Name", width: 200, dataType: "string", editable: false },
-        { title: "Ethnicity ID", width: 200, dataType: "string", editable: false, hidden: true },
-        { title: "Visually Identify by Admin", width: 300, dataType: "string", editable: true }];
+function InitializeGrid(searchTerm) {
+    var testStr = searchTerm.replace(/\s+/g, "")
+    if (/^[a-z0-9]+$/i.test(testStr)) {
 
-    obj.dataModel = {
-        location: "remote",
-        sorting: "local",
-        paging: "local",
-        dataType: "JSON",
-        method: "GET",
-        url: qUrl,
-        sortIndx: 1,
-        sortDir: "up",
-        rPP: 20
-    };
+        var obj = { width: 1200, height: 700 };
+        var qUrl = pathName + "Home/PopulateGrid?term=" + searchTerm.toLowerCase();
 
-    var $grid = $("#pqDbGrid").pqGrid(obj);
+        obj.colModel = [
+            { title: "Employee ID", width: 100, dataType: "string", editable: false, hidden: true },
+            { title: "Last Name", width: 200, dataType: "string", editable: false },
+            { title: "First Name", width: 200, dataType: "string", editable: false },
+            { title: "Ethnicity ID", width: 200, dataType: "string", editable: false, hidden: true },
+            { title: "Visually Identify by Admin", width: 300, dataType: "string", editable: true }];
 
-    $grid.pqGrid("option", "topVisible", true);
-    $grid.pqGrid("option", "title", "Diversity Reports Editor");
-    $grid.pqGrid("option", "bottomVisible", true);
-    $grid.pqGrid("option", "columnBorders", true);
-    $grid.pqGrid("option", "rowBorders", true);
-    $grid.pqGrid("option", "oddRowsHighlight", true);
-    $grid.pqGrid("option", "numberCell", false);
-    $grid.pqGrid("option", "flexHeight", false);
-    $grid.pqGrid("option", "flexWidth", false);
-    $grid.pqGrid("option", "scrollModel", { horizontal: true, });
-    $grid.pqGrid("option", "resizable", false);
-    $grid.pqGrid("option", "sortable", true);
-    $grid.pqGrid("option", "roundCorners", false);
-    $grid.pqGrid("option", "editable", true);
-    $grid.pqGrid("option", "selectionModel", { type: 'row', mode: 'single' });
-    $grid.pqGrid("option", "wrap", true);
-    $grid.on("pqgridcellsave", function (event, ui) { });
-    $grid.pqGrid({
-        cellDblClick: function (event, ui) {
-            // Show editing dialog.
-            $("#dlgEditProfile").dialog({
-                resizable: true,
-                height: 700,
-                width: 700,
-                modal: true,
-                buttons: {
-                    Update: function () {
-                        var DM = $grid.pqGrid("option", "dataModel");
-                        var data = DM.data;
-                        var rowIndx = getRowIndx();
-                        var row = data[rowIndx];
+        obj.dataModel = {
+            location: "remote",
+            sorting: "local",
+            paging: "local",
+            dataType: "JSON",
+            method: "GET",
+            url: qUrl,
+            sortIndx: 1,
+            sortDir: "up",
+            rPP: 20
+        };
 
-                        row[3] = $("#ethnicity > [selected]").val();
-                        row[4] = $("#ethnicity > [selected]").text();
+        var $grid = $("#pqDbGrid").pqGrid(obj);
 
-                        $grid.pqGrid("refreshRow", { rowIndx: rowIndx }).pqGrid('setSelection', { rowIndx: rowIndx });
-                        //saveFromDbEditDlg();
+        $grid.pqGrid("option", "topVisible", true);
+        $grid.pqGrid("option", "title", "Diversity Reports Editor");
+        $grid.pqGrid("option", "bottomVisible", true);
+        $grid.pqGrid("option", "columnBorders", true);
+        $grid.pqGrid("option", "rowBorders", true);
+        $grid.pqGrid("option", "oddRowsHighlight", true);
+        $grid.pqGrid("option", "numberCell", false);
+        $grid.pqGrid("option", "flexHeight", false);
+        $grid.pqGrid("option", "flexWidth", false);
+        $grid.pqGrid("option", "scrollModel", { horizontal: true, });
+        $grid.pqGrid("option", "resizable", false);
+        $grid.pqGrid("option", "sortable", true);
+        $grid.pqGrid("option", "roundCorners", false);
+        $grid.pqGrid("option", "editable", true);
+        $grid.pqGrid("option", "selectionModel", { type: 'row', mode: 'single' });
+        $grid.pqGrid("option", "wrap", true);
+        $grid.on("pqgridcellsave", function (event, ui) { });
+        $grid.pqGrid({
+            cellDblClick: function (event, ui) {
+                // Show editing dialog.
+                $("#dlgEditProfile").dialog({
+                    resizable: true,
+                    height: 700,
+                    width: 700,
+                    modal: true,
+                    buttons: {
+                        Update: function () {
+                            var DM = $grid.pqGrid("option", "dataModel");
+                            var data = DM.data;
+                            var rowIndx = getRowIndx();
+                            var row = data[rowIndx];
 
-                        $(this).dialog("close");
+                            row[3] = $("#ethnicity > [selected]").val();
+                            row[4] = $("#ethnicity > [selected]").text();
 
+                            $grid.pqGrid("refreshRow", { rowIndx: rowIndx }).pqGrid('setSelection', { rowIndx: rowIndx });
+                            //saveFromDbEditDlg();
+
+                            $(this).dialog("close");
+
+                        },
+                        Cancel: function () {
+                            $(this).dialog("close");
+                        }
                     },
-                    Cancel: function () {
-                        $(this).dialog("close");
+                    open: function (event, ui) {
+                        var $grid = $("#pqDbGrid");
+                        var rowIndx = getRowIndx();
+
+                        if (rowIndx != null) {
+                            var DM = $grid.pqGrid("option", "dataModel");
+                            var data = DM.data;
+                            var row = data[rowIndx];
+                            $("#firstLastName").text(row[2] + " " + row[1]);
+                            $("#ethnicity").val(row[3]);
+                        }
                     }
-                },
-                open: function (event, ui) {
-                    var $grid = $("#pqDbGrid");
-                    var rowIndx = getRowIndx();
+                });
+            }
+        });
 
-                    if (rowIndx != null) {
-                        var DM = $grid.pqGrid("option", "dataModel");
-                        var data = DM.data;
-                        var row = data[rowIndx];
-                        $("#firstLastName").text(row[2] + " " + row[1]);
-                        $("#ethnicity").val(row[3]);
-                    }
-                }
-            });
-        }
-    });
-
-
+    }
 }
 
 function saveFromDbEditDlg() {

@@ -13,7 +13,7 @@ namespace DiversityReports.Controllers
         {
             return View();
         }
-        public ActionResult PopulateGrid()
+        public ActionResult PopulateGrid(string str)
         {
             dynamic employee = null;
             var db = new ADP_FeedEntities();
@@ -21,15 +21,15 @@ namespace DiversityReports.Controllers
             employee = (from p in db.Employees
                         join s in db.EEOSurveys on p.EmployeeID equals s.EmployeeID
                         join e in db.Ethnicities on s.EthnicityID equals e.EthnicityID
+                        where str.Contains(p.EmployeeID.ToString()) || str.Contains(p.FirstName) || str.Contains(p.LastName) || str.Contains(p.WorkEmail.Replace("@kasowitz.com",""))
                         select new
                         {
                             p.EmployeeID,
                             p.LastName,
                             p.FirstName,
                             ethnicityID = s.EthnicityID,
-                            Viba = e.Ethnicity1
-                            
-                        });
+                            ethnicity = e.Ethnicity1
+                        }).FirstOrDefault();
 
             return new JsonResult()
             {
