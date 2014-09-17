@@ -21,12 +21,12 @@ namespace DiversityReports.Controllers
             employee = (from p in db.Employees
                         join s in db.EEOSurveys on p.EmployeeID equals s.EmployeeID
                         join e in db.Ethnicities on s.EthnicityID equals e.EthnicityID
-                        where str.Contains(p.EmployeeID.ToString()) || str.Contains(p.FirstName) || str.Contains(p.LastName) || str.Contains(p.WorkEmail.Replace("@kasowitz.com",""))
+                        where str.Contains(p.EmployeeID.ToString()) || str.Contains(p.FirstName) || str.Contains(p.LastName)
                         select new
                         {
-                            p.EmployeeID,
-                            p.LastName,
-                            p.FirstName,
+                            employeeID = p.EmployeeID,
+                            lastName = p.LastName,
+                            firstName = p.FirstName,
                             ethnicityID = s.EthnicityID,
                             ethnicity = e.Ethnicity1
                         }).FirstOrDefault();
