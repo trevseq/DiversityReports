@@ -47,7 +47,6 @@ namespace DiversityReports.Controllers
 
             emp.VisuallyIdentifyAdmin = ethId;
 
-
             //db.SaveChanges();
             return new JsonResult()
             {
