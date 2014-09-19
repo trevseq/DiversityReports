@@ -9,13 +9,19 @@ pathName = location.protocol + "//" + location.host + pathName.replace("//", "/"
 
 $(document).on("ready", function () {
 
-    
     PopulateEthDropdown();
 
 
     /*========= Event Handlers ============*/
-    $('#btnSearch').on("click", function (e) {
+    $("#btnSearch").on("click", function (e) {
         InitializeGrid($('#txtSearch').val());
+    });
+
+    $("#txtSearch").keypress(function (e) {
+        if (e.which === 13) {
+            e.preventDefault();
+            InitializeGrid($("#txtSearch").val());
+        }
     });
 
 });
@@ -58,7 +64,6 @@ function InitializeGrid(searchTerm) {
         a.done(function (tempdata) {
 
             //delete tempdata["__proto__"];
-            console.log(tempdata);
             var data = [tempdata];
             data.push({ employeeID: "", lastName: "", firstName: "", ethnicityID: "", ethnicity: "" });
 
@@ -112,9 +117,13 @@ function InitializeGrid(searchTerm) {
             $grid.on("pqgridcellsave", function (event, ui) { });
             $grid.pqGrid({
                 cellDblClick: function (event, ui) {
+                    var DM = $grid.pqGrid("option", "dataModel");
+                    var data = DM.data;
+                    var rowIndx = getRowIndx();
+                    var row = data[rowIndx];
                     
-                    //$("#ethnicity").val(row[3]);
-                    //$("#firstLastName").text(row[4]);
+                    $("#ethnicity").val(row.ethnicityID);
+                    $("#firstLastName").text(row.firstName + " " + row.lastName);
 
                     $("#dlgEditProfile").dialog({
                         resizable: true,
@@ -123,11 +132,6 @@ function InitializeGrid(searchTerm) {
                         modal: true,
                         buttons: {
                             Update: function () {
-                                var DM = $grid.pqGrid("option", "dataModel");
-                                var data = DM.data;
-                                var rowIndx = getRowIndx();
-                                var row = data[rowIndx];
-
                                 row[3] = $("#ethnicity > [selected]").val();
                                 row[4] = $("#ethnicity > [selected]").text();
 
@@ -149,8 +153,8 @@ function InitializeGrid(searchTerm) {
                                 var DM = $grid.pqGrid("option", "dataModel");
                                 var data = DM.data;
                                 var row = data[rowIndx];
-                                $("#firstLastName").text(row[2] + " " + row[1]);
-                                $("#ethnicity").val(row[3]);
+                                //$("#firstLastName").text(row[2] + " " + row[1]);
+                                //$("#ethnicity").val(row[3]);
                             }
                         }
                     });
@@ -172,6 +176,7 @@ function getRowIndx() {
         var rowIndx = arr[0].rowIndx;
 
         //if (rowIndx != null && colIndx == null) {
+        //console.log(rowIndx);
         return rowIndx;
     }
     else {
