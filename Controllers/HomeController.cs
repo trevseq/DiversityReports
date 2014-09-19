@@ -28,7 +28,9 @@ namespace DiversityReports.Controllers
                             lastName = p.LastName,
                             firstName = p.FirstName,
                             ethnicityID = s.EthnicityID,
-                            ethnicity = e.Ethnicity1
+                            ethnicity = e.Ethnicity1,
+                            //title = p.JobTitle,
+                            //category = s.EEO1Category,
                         }).FirstOrDefault();
 
             return new JsonResult()
@@ -37,7 +39,7 @@ namespace DiversityReports.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        // Needs editing...
         public ActionResult ResaveDbData(int employeeId, int ethId)
         {
             var db = new ADP_FeedEntities();
