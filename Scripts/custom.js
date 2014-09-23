@@ -15,10 +15,12 @@ $(document).on("ready", function () {
     PopulateTitlesDropdown();
     PopulateCategoriesDropdown()
 
+    $("#txtSearch").focus();
+
     /*========= Event Handlers ============*/
     $("#btnSearch").on("click", function (e) {
         if(gridCreated){
-            $("#pqDbGrid").pqGrid("destroy");
+            $("#pqDbGrid").pqGrid(" ");
         }
         InitializeGrid($('#txtSearch').val());
     });
