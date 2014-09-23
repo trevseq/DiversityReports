@@ -85,8 +85,8 @@ namespace DiversityReports.Controllers
             data = (from e in db.Titles
                     select new
                     {
-                        title = e.TitleID,
-                        titleID = e.Title1
+                        titleID = e.TitleID,
+                        title = e.Title1
                     });
 
             return new JsonResult()

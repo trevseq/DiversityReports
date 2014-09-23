@@ -10,7 +10,8 @@ pathName = location.protocol + "//" + location.host + pathName.replace("//", "/"
 $(document).on("ready", function () {
 
     PopulateEthDropdown();
-
+    PopulateTitlesDropdown();
+    PopulateCategoriesDropdown()
 
     /*========= Event Handlers ============*/
     $("#btnSearch").on("click", function (e) {
@@ -111,11 +112,11 @@ function InitializeGrid(searchTerm) {
                     { dataIndx: "lastName", title: "Last Name", width: 200, dataType: "string", editable: false },
                     { dataIndx: "firstName", title: "First Name", width: 200, dataType: "string", editable: false },
                     { dataIndx: "ethnicityID", title: "Ethnicity ID", width: 200, dataType: "integer", editable: false, hidden: true },
-                    { dataIndx: "ethnicity", title: "Visually Identify by Admin", width: 300, dataType: "string", editable: false },
-                    { dataIndx: "titleID", title: "Title ID", width: 200, dataType: "integer", editable: false, hidden: true },
-                    { dataIndx: "title", title: "Job Title", width: 200, dataType: "string", editable: false },
-                    { dataIndx: "categoryID", title: "Job Category ID", width: 200, dataType: "integer", editable: false, hidden: true },
-                    { dataIndx: "category", title: "Job Category", width: 200, dataType: "string", editable: false },
+                    { dataIndx: "ethnicity", title: "Visually Identify by Admin", width: 200, dataType: "string", editable: false },
+                    { dataIndx: "titleID", title: "Title ID", width: 150, dataType: "integer", editable: false, hidden: true },
+                    { dataIndx: "title", title: "Job Title", width: 150, dataType: "string", editable: false },
+                    { dataIndx: "categoryID", title: "Job Category ID", width: 150, dataType: "integer", editable: false, hidden: true },
+                    { dataIndx: "category", title: "Job Category", width: 150, dataType: "string", editable: false },
                 ];
 
                 obj.dataModel = {
@@ -160,8 +161,8 @@ function InitializeGrid(searchTerm) {
                     cellDblClick: function (event, ui) {
                         var DM = $grid.pqGrid("option", "dataModel");
                         var data = DM.data;
-                        var rowIndx = getRowIndx();
-                        var row = data[rowIndx];
+                        var rIndx = getRowIndx();
+                        var row = data[rIndx];
                         
                         $("#firstLastName").text(row.firstName + " " + row.lastName);
                         $("#ethnicity").val(row.ethnicityID);
@@ -175,14 +176,14 @@ function InitializeGrid(searchTerm) {
                             modal: true,
                             buttons: {
                                 Update: function () {
-                                    row[3] = $("#ethnicity").val();
-                                    row[4] = $("#ethnicity > [selected]").text();
-                                    row[5] = $("#title").val()
-                                    row[6] = $("#title > [selected]").text();
-                                    row[7] = $("#category").val()
-                                    row[8] = $("#category > [selected]").text();
+                                    row.ethnicityID = $("#ethnicity").val();
+                                    row.ethnicity = $("#ethnicity > [selected]").text();
+                                    row.titleID = $("#title").val()
+                                    row.title = $("#title > [selected]").text();
+                                    row.categoryID = $("#category").val()
+                                    row.category = $("#category > [selected]").text();
 
-                                    $grid.pqGrid("refreshRow", { rowIndx: rowIndx }).pqGrid('setSelection', { rowIndx: rowIndx });
+                                    $grid.pqGrid("refreshRow", { rowIndx: rIndx }).pqGrid('setSelection', { rowIndx: rIndx });
                                     //ResaveDbData();
 
                                     $(this).dialog("close");
