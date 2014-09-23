@@ -7,6 +7,8 @@ pathName = pathName.replace("home", "");
 pathName += ((pathName.substring(pathName.length - 1) != "/") ? "/" : "");
 pathName = location.protocol + "//" + location.host + pathName.replace("//", "/");
 
+var gridCreated = false;
+
 $(document).on("ready", function () {
 
     PopulateEthDropdown();
@@ -15,12 +17,18 @@ $(document).on("ready", function () {
 
     /*========= Event Handlers ============*/
     $("#btnSearch").on("click", function (e) {
+        if(gridCreated){
+            $("#pqDbGrid").pqGrid("destroy");
+        }
         InitializeGrid($('#txtSearch').val());
     });
 
     $("#txtSearch").keypress(function (e) {
         if (e.which === 13) {
             e.preventDefault();
+            if (gridCreated){
+                $("#pqDbGrid").pqGrid("destroy");
+            }
             InitializeGrid($("#txtSearch").val());
         }
     });
@@ -204,6 +212,7 @@ function InitializeGrid(searchTerm) {
                         });
                     }
                 });
+                gridCreated = true;
             }
         });
     }

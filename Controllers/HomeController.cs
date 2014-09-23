@@ -24,6 +24,8 @@ namespace DiversityReports.Controllers
                         join c in db.EEO_Category on p.EEOCategory_ID equals c.EEOCategory_ID
                         join t in db.Titles on p.JobTitle equals t.TitleID
                         where str.Contains(p.EmployeeID.ToString()) || str.Contains(p.FirstName) || str.Contains(p.LastName)
+                        //p.EmployeeID.Equals(str) || (p.FirstName.IndexOf(str) > -1) || (p.LastName.IndexOf(str) > -1)
+                            
                         select new
                         {
                             employeeID = p.EmployeeID,
