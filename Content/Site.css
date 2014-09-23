@@ -159,7 +159,7 @@ select {
 .dl-horizontal dt {
   white-space: normal; }
 
-input, select, textarea {
+input, textarea {
   max-width: 280px; }
 
 .navbar {
