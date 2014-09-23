@@ -20,7 +20,7 @@ $(document).on("ready", function () {
     /*========= Event Handlers ============*/
     $("#btnSearch").on("click", function (e) {
         if(gridCreated){
-            $("#pqDbGrid").pqGrid(" ");
+            $("#pqDbGrid").pqGrid("destroy");
         }
         InitializeGrid($('#txtSearch').val());
     });
@@ -108,6 +108,7 @@ function InitializeGrid(searchTerm) {
             var data = $(tempdata).toArray();
             if (data.length === 0) {
                 alert("No records found!")
+                gridCreated = false;
             }
             else {
                 var obj = { width: 1200, height: 700, title: "Diversity Report Editor" };
