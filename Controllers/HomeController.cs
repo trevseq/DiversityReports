@@ -35,7 +35,7 @@ namespace DiversityReports.Controllers
                             title = t.Title1,
                             categoryID = p.EEOCategory_ID,
                             category = c.EEOCategory_Desc
-                        }).FirstOrDefault();
+                        });//.FirstOrDefault();
 
             return new JsonResult()
             {

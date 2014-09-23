@@ -95,15 +95,11 @@ function InitializeGrid(searchTerm) {
         a.done(function (tempdata) {
             var oneRow;
             //delete tempdata["__proto__"];
-            var data = [tempdata];
+            var data = $(tempdata).toArray();
             if (data.length === 0) {
                 alert("No records found!")
             }
             else {
-                if (data.length === 1) {
-                    oneRow = true;
-                    data.push({ employeeID: "", lastName: "", firstName: "", ethnicityID: "", ethnicity: "", titleID: "", title: "", categoryID: "", category: "" });
-                }
                 var obj = { width: 1200, height: 700, title: "Diversity Report Editor" };
                 var qUrl = pathName + "Home/PopulateGrid?str=" + searchTerm;
 
@@ -208,9 +204,6 @@ function InitializeGrid(searchTerm) {
                         });
                     }
                 });
-                if (oneRow) {
-                    hideRow(1);
-                }
             }
         });
     }
