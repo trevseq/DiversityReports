@@ -71,7 +71,7 @@ function InitializeGrid(searchTerm) {
             else {
                 if (data.length === 1) {
                     oneRow = true;
-                    data.push({ employeeID: "", lastName: "", firstName: "", ethnicityID: "", ethnicity: "" });
+                    data.push({ employeeID: "", lastName: "", firstName: "", ethnicityID: "", ethnicity: "", titleID: "", title: "", categoryID: "", category: "" });
                 }
                 var obj = { width: 1200, height: 700, title: "Diversity Report Editor" };
                 var qUrl = pathName + "Home/PopulateGrid?str=" + searchTerm;
@@ -81,7 +81,12 @@ function InitializeGrid(searchTerm) {
                     { dataIndx: "lastName", title: "Last Name", width: 200, dataType: "string", editable: false },
                     { dataIndx: "firstName", title: "First Name", width: 200, dataType: "string", editable: false },
                     { dataIndx: "ethnicityID", title: "Ethnicity ID", width: 200, dataType: "integer", editable: false, hidden: true },
-                    { dataIndx: "ethnicity", title: "Visually Identify by Admin", width: 300, dataType: "string", editable: false }];
+                    { dataIndx: "ethnicity", title: "Visually Identify by Admin", width: 300, dataType: "string", editable: false },
+                    { dataIndx: "titleID", title: "Title ID", width: 200, dataType: "integer", editable: false, hidden: true },
+                    { dataIndx: "title", title: "Job Title", width: 200, dataType: "string", editable: false },
+                    { dataIndx: "categoryID", title: "Job Category ID", width: 200, dataType: "integer", editable: false, hidden: true },
+                    { dataIndx: "category", title: "Job Category", width: 200, dataType: "string", editable: false },
+                ];
 
                 obj.dataModel = {
                     //location: "remote",

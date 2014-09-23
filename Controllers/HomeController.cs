@@ -21,6 +21,8 @@ namespace DiversityReports.Controllers
             employee = (from p in db.Employees
                         join s in db.EEOSurveys on p.EmployeeID equals s.EmployeeID
                         join e in db.Ethnicities on s.EthnicityID equals e.EthnicityID
+                        join c in db.EEO_Category on p.EEOCategory_ID equals c.EEOCategory_ID
+                        join t in db.Titles on p.JobTitle equals t.TitleID
                         where str.Contains(p.EmployeeID.ToString()) || str.Contains(p.FirstName) || str.Contains(p.LastName)
                         select new
                         {
@@ -29,8 +31,10 @@ namespace DiversityReports.Controllers
                             firstName = p.FirstName,
                             ethnicityID = s.EthnicityID,
                             ethnicity = e.Ethnicity1,
-                            //title = p.JobTitle,
-                            //category = s.EEO1Category,
+                            titleID = p.JobTitle,
+                            title = t.Title1,
+                            categoryID = p.EEOCategory_ID,
+                            category = c.EEOCategory_Desc
                         }).FirstOrDefault();
 
             return new JsonResult()

@@ -141,10 +141,16 @@
     <Compile Include="Models\EEOSurvey.cs">
       <DependentUpon>DiversityReportModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EEO_Category.cs">
+      <DependentUpon>DiversityReportModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Employee.cs">
       <DependentUpon>DiversityReportModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Ethnicity.cs">
+      <DependentUpon>DiversityReportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Title.cs">
       <DependentUpon>DiversityReportModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ADP_FeedModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ADP_FeedModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ADP_Feed.dbo.EEO_Category' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EEO_Category">
+          <Key>
+            <PropertyRef Name="EEOCategory_ID" />
+            <PropertyRef Name="EEOCategory_Desc" />
+          </Key>
+          <Property Name="EEOCategory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EEOCategory_Desc" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="EEOSurvey">
           <Key>
             <PropertyRef Name="EEOSurveyID" />
@@ -81,15 +91,25 @@ warning 6002: The table/view 'ADP_Feed.dbo.Employees' does not have a primary ke
           <Property Name="EthnicityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ethnicity" Type="varchar" MaxLength="500" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'ADP_Feed.dbo.VisuallyIdentify' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="VisuallyIdentify">
-          <Property Name="EmployeeID" Type="int" />
-          <Property Name="EthnicityID" Type="int" />
-        </EntityType>-->
+        <EntityType Name="Titles">
+          <Key>
+            <PropertyRef Name="TitleID" />
+          </Key>
+          <Property Name="TitleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="500" />
+          <Property Name="sortOrder" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityContainer Name="ADP_FeedModelStoreContainer">
           <EntitySet Name="EEOSurvey" EntityType="Self.EEOSurvey" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ethnicity" EntityType="Self.Ethnicity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Titles" EntityType="Self.Titles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EEO_Category" EntityType="Self.EEO_Category" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EEO_Category].[EEOCategory_ID] AS [EEOCategory_ID], 
+    [EEO_Category].[EEOCategory_Desc] AS [EEOCategory_Desc]
+    FROM [dbo].[EEO_Category] AS [EEO_Category]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Employees" EntityType="Self.Employees" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Employees].[EmployeeID] AS [EmployeeID], 
@@ -141,8 +161,7 @@ warning 6013: The table/view 'ADP_Feed.dbo.VisuallyIdentify' does not have a pri
     FROM [dbo].[Employees] AS [Employees]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ADP_FeedModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -224,7 +243,26 @@ warning 6013: The table/view 'ADP_Feed.dbo.VisuallyIdentify' does not have a pri
           <EntitySet Name="EEOSurveys" EntityType="Self.EEOSurvey" />
           <EntitySet Name="Ethnicities" EntityType="Self.Ethnicity" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Titles" EntityType="ADP_FeedModel.Title" />
+          <EntitySet Name="EEO_Category" EntityType="ADP_FeedModel.EEO_Category" />
         </EntityContainer>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="TitleID" />
+          </Key>
+          <Property Name="TitleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="sortOrder" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="EEO_Category">
+          <Key>
+            <PropertyRef Name="EEOCategory_ID" />
+            <PropertyRef Name="EEOCategory_Desc" />
+          </Key>
+          <Property Name="EEOCategory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EEOCategory_Desc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -305,6 +343,24 @@ warning 6013: The table/view 'ADP_Feed.dbo.VisuallyIdentify' does not have a pri
                 <ScalarProperty Name="TreatedAsYear" ColumnName="TreatedAsYear" />
                 <ScalarProperty Name="EEOCategory_ID" ColumnName="EEOCategory_ID" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Titles">
+            <EntityTypeMapping TypeName="ADP_FeedModel.Title">
+              <MappingFragment StoreEntitySet="Titles">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="sortOrder" ColumnName="sortOrder" />
+                <ScalarProperty Name="Title1" ColumnName="Title" />
+                <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EEO_Category">
+            <EntityTypeMapping TypeName="ADP_FeedModel.EEO_Category">
+              <MappingFragment StoreEntitySet="EEO_Category">
+                <ScalarProperty Name="EEOCategory_Desc" ColumnName="EEOCategory_Desc" />
+                <ScalarProperty Name="EEOCategory_ID" ColumnName="EEOCategory_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

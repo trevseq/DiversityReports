@@ -28,5 +28,7 @@ namespace DiversityReports.Models
         public virtual DbSet<EEOSurvey> EEOSurveys { get; set; }
         public virtual DbSet<Ethnicity> Ethnicities { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Title> Titles { get; set; }
+        public virtual DbSet<EEO_Category> EEO_Category { get; set; }
     }
 }
