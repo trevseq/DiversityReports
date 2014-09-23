@@ -144,6 +144,9 @@ footer {
   height: 5%;
   width: 90%; }
 
+select {
+  width: 300px !important; }
+
 .body-content {
   padding-left: 15px;
   padding-right: 15px;
