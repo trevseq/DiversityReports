@@ -23,7 +23,7 @@ namespace DiversityReports.Controllers
                         join e in db.Ethnicities on s.EthnicityID equals e.EthnicityID
                         join c in db.EEO_Category on p.EEOCategory_ID equals c.EEOCategory_ID
                         join t in db.Titles on p.JobTitle equals t.TitleID
-                        where p.EmployeeID.Equals(str) || str.Contains(p.FirstName) || str.Contains(p.LastName)
+                        where str.Contains(p.EmployeeID.ToString()) || p.FirstName.Contains(str) || str.Contains(p.LastName)
                         //p.EmployeeID.Equals(str) || (p.FirstName.IndexOf(str) > -1) || (p.LastName.IndexOf(str) > -1)
                             
                         select new
