@@ -41,6 +41,36 @@ function PopulateEthDropdown() {
     })
 }
 
+function PopulateTitlesDropdown() {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: (pathName + "Home/GetTitles"),
+        cache: false,
+        success: function (data) {
+            var options = $.map(data, function (e) {
+                return "<option value=\"" + e.titleID + "\">" + e.title + "</option>";
+            }).join("");
+            $("#title").html(options);
+        }
+    })
+}
+
+function PopulateCategoriesDropdown() {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: (pathName + "Home/GetCategories"),
+        cache: false,
+        success: function (data) {
+            var options = $.map(data, function (e) {
+                return "<option value=\"" + e.categoryID + "\">" + e.category + "</option>";
+            }).join("");
+            $("#category").html(options);
+        }
+    })
+}
+
 
 function InitializeGrid(searchTerm) {
     var testStr = searchTerm.replace(/\s+/g, "")
@@ -132,9 +162,11 @@ function InitializeGrid(searchTerm) {
                         var data = DM.data;
                         var rowIndx = getRowIndx();
                         var row = data[rowIndx];
-
-                        $("#ethnicity").val(row.ethnicityID);
+                        
                         $("#firstLastName").text(row.firstName + " " + row.lastName);
+                        $("#ethnicity").val(row.ethnicityID);
+                        $("#title").val(row.titleID);
+                        $("#category").val(row.categoryID);
 
                         $("#dlgEditProfile").dialog({
                             resizable: true,
@@ -143,11 +175,15 @@ function InitializeGrid(searchTerm) {
                             modal: true,
                             buttons: {
                                 Update: function () {
-                                    row[3] = $("#ethnicity > [selected]").val();
+                                    row[3] = $("#ethnicity").val();
                                     row[4] = $("#ethnicity > [selected]").text();
+                                    row[5] = $("#title").val()
+                                    row[6] = $("#title > [selected]").text();
+                                    row[7] = $("#category").val()
+                                    row[8] = $("#category > [selected]").text();
 
                                     $grid.pqGrid("refreshRow", { rowIndx: rowIndx }).pqGrid('setSelection', { rowIndx: rowIndx });
-                                    //saveFromDbEditDlg();
+                                    //ResaveDbData();
 
                                     $(this).dialog("close");
 

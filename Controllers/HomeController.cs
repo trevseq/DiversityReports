@@ -46,6 +46,7 @@ namespace DiversityReports.Controllers
         // Needs editing...
         public ActionResult ResaveDbData(int employeeId, int ethId)
         {
+            //TODO: verify that title has a link to the category- if not, create one.
             var db = new ADP_FeedEntities();
             bool _success = false;
 
@@ -69,6 +70,40 @@ namespace DiversityReports.Controllers
                     {
                         ethnicityID = e.EthnicityID,
                         ethnicity = e.Ethnicity1
+                    });
+
+            return new JsonResult()
+            {
+                Data = data,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public ActionResult GetTitles()
+        {
+            dynamic data = null;
+            var db = new ADP_FeedEntities();
+            data = (from e in db.Titles
+                    select new
+                    {
+                        title = e.TitleID,
+                        titleID = e.Title1
+                    });
+
+            return new JsonResult()
+            {
+                Data = data,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public ActionResult GetCategories()
+        {
+            dynamic data = null;
+            var db = new ADP_FeedEntities();
+            data = (from e in db.EEO_Category
+                    select new
+                    {
+                        categoryID = e.EEOCategory_ID,
+                        category = e.EEOCategory_Desc
                     });
 
             return new JsonResult()
