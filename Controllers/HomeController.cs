@@ -1,8 +1,5 @@
 ﻿using DiversityReports.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace DiversityReports.Controllers
@@ -13,6 +10,7 @@ namespace DiversityReports.Controllers
         {
             return View();
         }
+
         /// <summary>
         /// Searches the ADP_Feed database table Employees for records where the search string is present.
         /// Used to populate the ParamQuery grid with employees' record information.
@@ -31,7 +29,7 @@ namespace DiversityReports.Controllers
                         join t in db.Titles on p.JobTitle equals t.TitleID
                         where str.Contains(p.EmployeeID.ToString()) || str.Contains(p.FirstName) || str.Contains(p.LastName) || str.Contains(p.PreferredFirstName) || str.Contains(p.PreferredLastName)
                         //p.EmployeeID.Equals(str) || (p.FirstName.IndexOf(str) > -1) || (p.LastName.IndexOf(str) > -1)
-                        
+
                         select new
                         {
                             employeeID = p.EmployeeID,
@@ -51,6 +49,7 @@ namespace DiversityReports.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
         // Needs editing...
         /// <summary>
         /// Saves the edited user's information back into the ADP Feed database.
@@ -75,8 +74,9 @@ namespace DiversityReports.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
         /// <summary>
-        /// Gets a list of ethnicities from the Ethnicities table 
+        /// Gets a list of ethnicities from the Ethnicities table
         /// to populate the ethnicities dropdown
         /// </summary>
         /// <returns>JSON object array "data"</returns>
@@ -97,6 +97,7 @@ namespace DiversityReports.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
         /// <summary>
         /// Gets a list of job titles from the Titles table
         /// to populate the titles dropdown
@@ -119,6 +120,7 @@ namespace DiversityReports.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
         /// <summary>
         /// Gets list of EEO categories from the EEO_Category table
         /// to populate the categories dropdown

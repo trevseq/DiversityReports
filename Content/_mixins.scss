@@ -1,6 +1,6 @@
-@mixin calc($property, $expression) { 
-  #{$property}: -webkit-calc(#{$expression}); 
-  #{$property}: calc(#{$expression}); 
+@mixin calc($property, $expression) {
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
 }
 
 @mixin transform($args){
@@ -21,7 +21,6 @@
     transition: $property $duration #{$timing} #{$delay};
     -webkit-transition: $property $duration #{$timing} #{$delay};
 }
-
 
 /* Responsive Breakpoints
    ========================================================================== */
@@ -204,7 +203,7 @@
   &:-moz-placeholder{
     color: $color
   }
-    
+
   &::-webkit-input-placeholder{
     color: $color
   }

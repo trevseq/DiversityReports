@@ -12,20 +12,20 @@ body {
     font-family: 'OpenSans';
 }
 
-.navbar-fixed-top{
-    width: 85%!important;
-    margin-left: 7.5%!important;
-    overflow: hidden!important;
+.navbar-fixed-top {
+    width: 85% !important;
+    margin-left: 7.5% !important;
+    overflow: hidden !important;
 }
 
 footer {
     position: relative;
-    height: 5%; 
+    height: 5%;
     width: 90%;
 }
 
-select{
-    width: 300px!important;
+select {
+    width: 300px !important;
 }
 
 // Set padding to keep content from hitting the edges
@@ -36,14 +36,14 @@ select{
     min-height: 100%;
 }
 
- /* Override the default bootstrap behavior where horizontal description lists 
- *  will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+ *  will truncate terms that are too long to fit in the left column
  */
 .dl-horizontal dt {
     white-space: normal;
 }
 
-// Set width on the form input elements since they're 100% wide by default 
+// Set width on the form input elements since they're 100% wide by default
 input, textarea {
     max-width: 280px;
 }
@@ -51,30 +51,27 @@ input, textarea {
 // Navbar color changing
 .navbar {
     background: #2a5e99; /* Old browsers */
-    background: -moz-linear-gradient(top,  #2a5e99 0%, #6bb0e5 100%); /* FF3.6+ */
+    background: -moz-linear-gradient(top, #2a5e99 0%, #6bb0e5 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2a5e99), color-stop(100%,#6bb0e5)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #2a5e99 0%,#6bb0e5 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #2a5e99 0%,#6bb0e5 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #2a5e99 0%,#6bb0e5 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #2a5e99 0%,#6bb0e5 100%); /* W3C */
+    background: -webkit-linear-gradient(top, #2a5e99 0%,#6bb0e5 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #2a5e99 0%,#6bb0e5 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #2a5e99 0%,#6bb0e5 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #2a5e99 0%,#6bb0e5 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2a5e99', endColorstr='#6bb0e5',GradientType=0 ); /* IE6-9 */
-
     // remove bootstrap's border
-    border: none!important;
-
+    border: none !important;
     // navbar matching content size
     width: 85%;
     margin-left: 7.5%;
-
     // box shadow and border radius
     @include boxShadow(10px, 10px, 5px, #888888);
     @include border-radius(15px);
-
-    margin-top: 5px!important;
+    margin-top: 5px !important;
 }
 
 .navbar-header {
     width: 100%;
+
     p {
         margin-left: -10%;
         text-align: center;
@@ -95,17 +92,17 @@ input, textarea {
     @include border-radius(15px);
 }
 
-#pqDbGrid{
-    width: auto!important;
-    height: inherit!important;
+#pqDbGrid {
+    width: auto !important;
+    height: inherit !important;
 }
 
-#txtSearch, #btnSearch{
+#txtSearch, #btnSearch {
     margin-top: -1%;
     width: 100%;
     height: 100%;
 }
 
-#btnSearch{
+#btnSearch {
     margin-top: -3%;
 }

@@ -1,14 +1,14 @@
 /**
  * ParamQuery Grid a.k.a. pqGrid v1.1.3
- * 
+ *
  * Copyright (c) 2012-2013 Paramvir Dhindsa
  * Released under GPL v3 license
  * http://paramquery.com/license
- * 
- */     	
+ *
+ */
 (function($){
 	"use strict";
-	$.paramquery=($.paramquery==null)?{}:$.paramquery;	
+	$.paramquery=($.paramquery==null)?{}:$.paramquery;
 	$.paramquery.xmlToArray=function(data,obj){
 		var itemParent=obj.itemParent;
 		var itemNames=obj.itemNames;
@@ -18,12 +18,12 @@
 			var $item=$(item);
 			var arr2=[];
 			$(itemNames).each(function(j,itemName){
-				arr2.push($item.find(itemName).text());	
+				arr2.push($item.find(itemName).text());
 			});
 			arr.push(arr2);
 		});
 		return arr;
-	};		
+	};
 	$.paramquery.tableToArray=function(tbl){
 		var $tbl=$(tbl);
 		var colModel=[];
@@ -74,18 +74,18 @@
 			arr2=[];
 		for(var i=0;i<arr.length;i++){
 			if(i>0 && i%3==0){
-				arr2.push(",");	
+				arr2.push(",");
 			}
 			arr2.push(arr[i]);
-		}	
+		}
 		arr2=arr2.reverse();
 		fp=arr2.join("");
 		return fp+lp;
-    };	
+    };
 })(jQuery);
 /**
  * ParamQuery Pager a.k.a. pqPager
- */     	
+ */
 (function($){
 	"use strict";
 var fnPG={};
@@ -95,7 +95,7 @@ fnPG.options={
 	totalRecords:0,
 	msg:"",
 	rPPOptions:[10,20,30,40,50,100],
-	rPP:20		
+	rPP:20
 };
 fnPG._regional={
 	strPage:"Page {0} of {1}",
@@ -103,9 +103,9 @@ fnPG._regional={
 	strPrevPage:"Previous Page",
 	strNextPage:"Next Page",
 	strLastPage:"Last Page",
-	strRefresh:"Refresh",	
+	strRefresh:"Refresh",
 	strRpp:"Records per page:",
-	strDisplay:"Displaying {0} to {1} of {2} items."	
+	strDisplay:"Displaying {0} to {1} of {2} items."
 };
 $.extend(fnPG.options,fnPG._regional);
 fnPG._create=function(){
@@ -126,7 +126,7 @@ fnPG._create=function(){
 			} ) !== false ) {
 				that.option( {currentPage:1} );
 			}
-		}					
+		}
 	});
 	this.prev=$( "<button type='button' title='"+this.options.strPrevPage+"'></button>")
 	.appendTo( this.element )
@@ -137,7 +137,7 @@ fnPG._create=function(){
 				curPage: currentPage
 			} ) !== false ) {
 				that.option( {currentPage:currentPage} );
-			}						
+			}
 		}
 	});
 	$("<span class='pq-separator'></span>").appendTo(this.element);
@@ -148,17 +148,17 @@ fnPG._create=function(){
 	.appendTo( this.element )
 	.button({icons:{primary:"pq-page-next"},text:false}).bind("click",function(evt){
 		var val=that.options.currentPage+1;
-		if ( that._trigger( "change", evt, {curPage: val} ) !== false ) {			
+		if ( that._trigger( "change", evt, {curPage: val} ) !== false ) {
 			that.option( {currentPage:val} );
-		}				
+		}
 	});
 	this.last=$( "<button type='button' title='"+this.options.strLastPage+"'></button>")
 	.appendTo( this.element )
 	.button({icons:{primary:"pq-page-last"},text:false}).bind("click",function(evt){
 		var val=that.options.totalPages;
-		if ( that._trigger( "change", evt, {curPage: val} ) !== false ) {			
+		if ( that._trigger( "change", evt, {curPage: val} ) !== false ) {
 			that.option( {currentPage:val} );
-		}									
+		}
 	});
 	$("<span class='pq-separator'></span>").appendTo(this.element);
 	this.$strRpp = $("<span>"+this.options.strRpp+" </span>")
@@ -174,9 +174,9 @@ fnPG._create=function(){
 	$("<span class='pq-separator'></span>").appendTo(this.element);
 	this.$refresh=$("<button type='button' title='"+this.options.strRefresh+"'></button>")
 	.appendTo(this.element)
-	.button({icons:{primary:"pq-refresh"},text:false}).bind("click",function(evt){		
-		if ( that._trigger( "refresh", evt ) !== false ) {			
-		}				
+	.button({icons:{primary:"pq-refresh"},text:false}).bind("click",function(evt){
+		if ( that._trigger( "refresh", evt ) !== false ) {
+		}
 	});
 	$("<span class='pq-separator'></span>").appendTo(this.element);
 	this.$msg=$("<span class='pq-pager-msg'></span>")
@@ -193,7 +193,7 @@ fnPG._refreshPage=function(){
 		str+="<span>"+ele+"</span>";
 	});
 	strPage=str.replace("<span>{0}</span>","<span class='textbox'></span>");
-	strPage=strPage.replace("<span>{1}</span>", "<span class='total'></span>");	
+	strPage=strPage.replace("<span>{1}</span>", "<span class='total'></span>");
 	var $temp=$( strPage ).appendTo(this.pagePlaceHolder);
 	this.page=$( "<input type='text' tabindex='0' />")
 		.replaceAll("span.textbox", $temp)
@@ -207,17 +207,17 @@ fnPG._refreshPage=function(){
 		val=parseInt(val);
 		if(val>that.options.totalPages){
 			$this.val(that.options.currentPage);
-			return false;						
+			return false;
 		}
 		if ( that._trigger( "change", evt, {
 			curPage: val
 		}) !== false ) {
 			that.option( {currentPage:val} );
-		}				
+		}
 		else{
 			$this.val(that.options.currentPage);
-			return false;												
-		}				
+			return false;
+		}
 	});
 	this.$total=$temp.filter("span.total");
 };
@@ -240,7 +240,7 @@ fnPG._refresh=function(){
         opt.setAttribute("value",opts[i]);
         opt.innerHTML=opts[i];
 		sel.append(opt);
-	}				
+	}
 	sel.find("option[value="+this.options.rPP+"]").attr("selected",true);
 	if(this.options.currentPage>=this.options.totalPages){
 		this.next.button({disabled:true});
@@ -248,18 +248,18 @@ fnPG._refresh=function(){
 	}
 	else{
 		this.next.button({disabled:false});
-		this.last.button({disabled:false});					
+		this.last.button({disabled:false});
 	}
 	if(this.options.currentPage<=1){
 		this.first.button({disabled:true});
 		this.prev.button({disabled:true});
-	}		
+	}
 	else{
 		this.first.button({disabled:false});
-		this.prev.button({disabled:false});					
+		this.prev.button({disabled:false});
 	}
 	this.page.val(this.options.currentPage);
-	this.$total.text(this.options.totalPages);		
+	this.$total.text(this.options.totalPages);
 	if(this.options.totalRecords>0){
 		var rPP = this.options.rPP;
 		var currentPage = this.options.currentPage;
@@ -273,7 +273,7 @@ fnPG._refresh=function(){
 		strDisplay=strDisplay.replace("{0}",begIndx+1);
 		strDisplay=strDisplay.replace("{1}",endIndx);
 		strDisplay=strDisplay.replace("{2}",totalRecords);
-		this.$msg.html(strDisplay);			
+		this.$msg.html(strDisplay);
 	}
 	else{
 		this.$msg.html("");
@@ -283,12 +283,12 @@ fnPG._destroy=function(){
 	this.element.empty().removeClass("pq-pager").enableSelection();
 };
 fnPG._setOption=function(key,value){
-	if(key=="currentPage"||key=="totalPages")value=parseInt(value);	
-	$.Widget.prototype._setOption.call( this, key, value );				
+	if(key=="currentPage"||key=="totalPages")value=parseInt(value);
+	$.Widget.prototype._setOption.call( this, key, value );
 };
 fnPG._setOptions=function(){
 	$.Widget.prototype._setOptions.apply( this, arguments );
-	this._refresh();				
+	this._refresh();
 };
 	$.widget("paramquery.pqPager",fnPG);
 	$.paramquery.pqPager.regional={};
@@ -301,11 +301,11 @@ fnPG._setOptions=function(){
 		$(".pq-pager").each(function(i,pager){
 			$(pager).pqPager("option",obj);
 		});
-	};		
+	};
 })(jQuery);
 /**
  * ParamQuery Scrollbar a.k.a. pqScrollBar
- */     	
+ */
 (function($){
 	"use strict";
 var fnSB={};
@@ -323,7 +323,7 @@ fnSB._destroy=function(){
 };
 fnSB._create=function(){
 	this.length=this.options.length;
-	this.direction=this.options.direction;	
+	this.direction=this.options.direction;
 	this.num_eles=this.options.num_eles;
 	var that=this;
 	var ele=this.element.empty();
@@ -337,7 +337,7 @@ fnSB._create=function(){
 				<div class='vert-slider-bg'></div>\
 				<div class='vert-slider-bottom'></div>\
 			</div>\
-		<div class='bottom-btn pq-sb-btn'></div>");	
+		<div class='bottom-btn pq-sb-btn'></div>");
 	}
 	else{
 		ele.addClass("pq-scrollbar-horiz");
@@ -346,7 +346,7 @@ fnSB._create=function(){
 			<div class='pq-sb-slider pq-sb-slider-h'>\
 				<span class='horiz-slider-left'></span><span class='horiz-slider-bg'></span><span class='horiz-slider-center'></span><span class='horiz-slider-bg'></span><span class='horiz-slider-right'></span>\
 			</div>\
-		<div class='right-btn pq-sb-btn'></div>");					
+		<div class='right-btn pq-sb-btn'></div>");
 	}
 	this.element.disableSelection().bind('click.pq-scrollbar',function(evt){
 		if(that.options.disabled)return;
@@ -358,14 +358,14 @@ fnSB._create=function(){
 			var topSlider= that.$slider.offset().top;
 			var botSlider=topSlider+ that.$slider.height();
 			if(clickY<topSlider && clickY>top_this+17 ){
-				var new_top = clickY-top_this;						
+				var new_top = clickY-top_this;
 				that.$slider.css("top",new_top);
 				that._updateCurPosAndTrigger(evt);
 			}
 			else if(clickY>botSlider && clickY<bottom_this-17){
 				that.$slider.css("top",clickY-top_this-that.$slider.height());
 				that._updateCurPosAndTrigger(evt);
-			}					
+			}
 		}
 		else{
 			var top=evt.pageX;
@@ -378,7 +378,7 @@ fnSB._create=function(){
 			else if(top>botSlider){
 				that.$slider.css("left",top-that.element.offset().left-that.$slider.width());
 				that._updateCurPosAndTrigger(evt);
-			}					
+			}
 		}
 	});
 	var axis='x';
@@ -397,11 +397,11 @@ fnSB._create=function(){
 			if(pace=="optimum")
 				that._setNormalPace(evt);
 			else if(pace=="fast")
-				that._updateCurPosAndTrigger(evt);	
-		},	
+				that._updateCurPosAndTrigger(evt);
+		},
 		stop:function(evt){
 			that._updateCurPosAndTrigger(evt);
-			that.dragging=false;		
+			that.dragging=false;
 			that._refresh();
 		}
 	});
@@ -410,7 +410,7 @@ fnSB._create=function(){
 			that.options.cur_pos--;
 			that.updateSliderPos();
 			that.scroll(evt);
-		}				
+		}
 	}
 	this.$top_btn = $("div.top-btn,div.left-btn",this.element).click(function(evt){
 		if(that.options.disabled)return;
@@ -422,8 +422,8 @@ fnSB._create=function(){
 		that.mousedownTimeout=window.setTimeout(function(){
 			that.mousedownInterval = window.setInterval(function(){
 				decr_cur_pos(evt)
-			},50);					
-		},that.options.timeout)				
+			},50);
+		},that.options.timeout)
 	}).bind('mouseup mouseout',function(evt){
 		if(that.options.disabled)return;
 		that._mouseup(evt);
@@ -434,7 +434,7 @@ fnSB._create=function(){
 		}
 		that.updateSliderPos();
 		that.scroll(evt);
-	}			
+	}
 	this.$bottom_btn = $("div.bottom-btn,div.right-btn",this.element).click(function(evt){
 		if(that.options.disabled)return;
 		incr_cur_pos(evt);
@@ -445,8 +445,8 @@ fnSB._create=function(){
 		that.mousedownTimeout=window.setTimeout(function(){
 			that.mousedownInterval = window.setInterval(function(){
 				incr_cur_pos(evt)
-			},50);					
-		},that.options.timeout)						
+			},50);
+		},that.options.timeout)
 	}).bind('mouseup mouseout',function(evt){
 		if(that.options.disabled)return;
 		that._mouseup(evt);
@@ -455,7 +455,7 @@ fnSB._create=function(){
 }
 fnSB._mouseup=function(evt){
 	if(this.options.disabled)return;
-	var that=this;			
+	var that=this;
 	window.clearTimeout(that.mousedownTimeout);
 	that.mousedownTimeout=null;
 	window.clearInterval(that.mousedownInterval);
@@ -464,22 +464,22 @@ fnSB._mouseup=function(evt){
 fnSB._setDragLimits=function(){
 	if (this.direction == "vertical") {
 		var top = this.element.offset().top+17;
-		var bot = (top + this.length - 34 - this.slider_length); 
-		this.$slider.draggable("option","containment",[0,top,0,bot]);						
+		var bot = (top + this.length - 34 - this.slider_length);
+		this.$slider.draggable("option","containment",[0,top,0,bot]);
 	}
 	else{
 		var top = this.element.offset().left+17;
-		var bot = (top + this.length - 34 - this.slider_length); 
-		this.$slider.draggable("option","containment",[top,0,bot,0]);						
+		var bot = (top + this.length - 34 - this.slider_length);
+		this.$slider.draggable("option","containment",[top,0,bot,0]);
 	}
 }
 fnSB._refresh=function(){
 	if(this.options.num_eles<=1){
-		this.element.css("display","none");				
+		this.element.css("display","none");
 	}
 	else{
-		this.element.css("display","");		
-	}					
+		this.element.css("display","");
+	}
 	this.num_eles=this.options.num_eles;
 	this.length=this.options.length;
 	this._validateCurPos();
@@ -527,25 +527,25 @@ fnSB._updateCurPosAndTrigger = function(evt,top){
 	var $slider=that.$slider;
 	if(top==null){
 		top=(that.direction=="vertical")?parseInt($slider[0].style.top):parseInt($slider[0].style.left);
-	}	
+	}
 	var scroll_space =that.length-34-((that.direction=="vertical")?$slider[0].offsetHeight:$slider[0].offsetWidth);
 	var cur_pos = (top-17)*(that.num_eles-1)/scroll_space;
 	cur_pos=Math.round(cur_pos);
 	if(that.options.cur_pos!=cur_pos){
-		if(this.dragging){			
+		if(this.dragging){
 			if(this.topWhileDrag!=null){
 				if(this.topWhileDrag < top && that.options.cur_pos>cur_pos){
 					return;
 				}
 				else if(this.topWhileDrag > top && that.options.cur_pos<cur_pos){
 					return;
-				}				
+				}
 			}
-			this.topWhileDrag=top;			
-		}		
+			this.topWhileDrag=top;
+		}
 		that.options.cur_pos=cur_pos;
 		this.scroll(evt);
-	}				
+	}
 }
 fnSB._setNormalPace=function(evt){
 	if(this.timer){
@@ -561,8 +561,8 @@ fnSB._setNormalPace=function(evt){
 			window.clearInterval(that.timer);
 			that.timer=null;
 		}
-		that.prev_top = top;				
-	},20);				
+		that.prev_top = top;
+	},20);
 }
 fnSB.setNumEles=function(num_eles){
 	this.num_eles= this.options.num_eles=num_eles;
@@ -573,14 +573,14 @@ fnSB._validateCurPos=function(){
 		this.options.cur_pos=this.num_eles-1;
 	}
 	if(this.options.cur_pos<0){
-		this.options.cur_pos=0;				
-	}	
+		this.options.cur_pos=0;
+	}
 }
 fnSB.updateSliderPos=function(){
 	var sT=(this.scroll_space*(this.options.cur_pos))/(this.num_eles-1);
 	if(this.direction=="vertical")
 		this.$slider.css("top",17+sT);
-	else				
+	else
 		this.$slider.css("left",17+sT);
 }
 fnSB.scroll=function(evt){
@@ -598,7 +598,7 @@ fnSB._setOption=function(key,value){
 }
 fnSB._setOptions=function(){
 	$.Widget.prototype._setOptions.apply( this, arguments );
-	this._refresh();				
+	this._refresh();
 }
 	$.widget("paramquery.pqScrollBar",fnSB);
 })(jQuery);
@@ -633,7 +633,7 @@ fnSB._setOptions=function(){
             that._trigger("beforeTableView", null, {
                 data: that.data,
                 curPos: row,
-                finalPos: finalRow, 
+                finalPos: finalRow,
                 curPage: that.dataModel.curPage
             });
         }
@@ -651,24 +651,24 @@ fnSB._setOptions=function(){
         {
             buffer.push("<tr class='pq-row-hidden'>");
             if (that.numberCell) {
-                var wd = that.numberCellWidth + 1; 
+                var wd = that.numberCellWidth + 1;
                 buffer.push("<td style='width:" + wd + "px;' ></td>");
             }
             for (var col = 0; col < noColumns; col++) {
                 var column = thisColModel[col];
-                if (column.hidden) { 
+                if (column.hidden) {
                     continue;
                 } else if (that.hidearrHS[col]) {
                     hidearrHS1.push(col);
                     continue;
                 }
-                var wd = outerWidths[col]; 
+                var wd = outerWidths[col];
                 buffer.push("<td style='width:" + wd + "px;' pq-top-col-indx=" + col + "></td>");
             }
             for (var k = 0; k < hidearrHS1.length; k++) {
                 var col = hidearrHS1[k];
                 var column = thisColModel[col];
-                var wd = outerWidths[col]; 
+                var wd = outerWidths[col];
                 buffer.push("<td style='width:" + wd + "px;'></td>");
             }
             buffer.push("</tr>");
@@ -761,12 +761,12 @@ fnSB._setOptions=function(){
                 $td = objP.$td,
                 column = objP.column,
                 dataIndx = column.dataIndx,
-                wrap = objP.wrap, 
+                wrap = objP.wrap,
                 customData = objP.customData;
         var dataCell;
         if (column.render) {
             dataCell = column.render({
-                data: that.data, 
+                data: that.data,
                 dataModel: that.dataModel,
                 rowData: rowData,
                 rowIndxPage: rowIndxPage,
@@ -781,7 +781,7 @@ fnSB._setOptions=function(){
             dataCell = rowData[dataIndx];
         }
         if (dataCell === "" || dataCell == undefined)
-            dataCell = "&nbsp;"; 
+            dataCell = "&nbsp;";
         var cls = "pq-td-div";
         if (wrap == false)
             cls += " pq-wrap-text";
@@ -792,7 +792,7 @@ fnSB._setOptions=function(){
         return str;
     }
     _pG._generateRow = function(rowData, rowIndx, thisColModel, noColumns, hidearrHS1, offset, const_cls, buffer, objP) {
-        var row_cls = "pq-grid-row"; 
+        var row_cls = "pq-grid-row";
         var that = this.that,
                 thisOptions = that.options,
                 columnBorders = thisOptions.columnBorders,
@@ -807,7 +807,7 @@ fnSB._setOptions=function(){
         buffer.push("<tr pq-row-indx='" + rowIndx + "' class='" + row_cls + "' >");
         if (that.numberCell) {
             buffer.push("<td style='width:" + that.numberCellWidth + "px;' class='pq-grid-number-cell ui-state-default'>\
-		<div class='pq-td-div'>" + ((objP) ? "&nbsp;" : (rowIndx + 1)) + "</div></td>"); 
+		<div class='pq-td-div'>" + ((objP) ? "&nbsp;" : (rowIndx + 1)) + "</div></td>");
         }
         for (var col = 0; col < noColumns; col++) {
             var column = thisColModel[col],
@@ -821,14 +821,14 @@ fnSB._setOptions=function(){
                     cellSelection = selectedDataIndices[dataIndx];
                 }
             }
-            if (column.hidden) { 
+            if (column.hidden) {
                 continue;
             }
             else if (that.hidearrHS[col]) {
                 continue;
             }
             var strStyle = "";
-            var cls = const_cls; 
+            var cls = const_cls;
             if (column.align == "right") {
                 cls += ' pq-align-right';
             } else if (column.align == "center") {
@@ -859,7 +859,7 @@ fnSB._setOptions=function(){
             objRender.colIndx = col;
             var strStyle = "";
             strStyle += "visibility:hidden;";
-            var cls = const_cls; 
+            var cls = const_cls;
             if (column.align == "right") {
                 cls += ' pq-align-right';
             } else if (column.align == "center") {
@@ -1250,7 +1250,7 @@ fnSB._setOptions=function(){
         freezeCols: 0,
         getDataIndicesFromColIndices: true,
         height: 400,
-        hoverMode: 'row', 
+        hoverMode: 'row',
         minWidth: 50,
         numberCell: true,
         numberCellWidth: 50,
@@ -1299,8 +1299,8 @@ fnSB._setOptions=function(){
     }
     fn._destroy = function() {
         this._destroyResizable();
-        this._destroyDraggable(); 
-        this.element.empty(); 
+        this._destroyDraggable();
+        this.element.empty();
         this.element.css('height', "");
         this.element.css('width', "");
         this.element.removeClass('pq-grid ui-widget ui-widget-content ui-corner-all').removeData();
@@ -1329,7 +1329,7 @@ fnSB._setOptions=function(){
         var $tr = $($trs[indx]);
         rowIndxPage = parseInt($tr.attr('pq-row-indx'));
         var $tds = $tr.find("td");
-        indx = 0; 
+        indx = 0;
         for (var i = 1; i < $tds.length; i++) {
             if ($tds[i].offsetLeft > left) {
                 break;
@@ -1445,7 +1445,7 @@ fnSB._setOptions=function(){
         this.freezeCols = this.options.freezeCols;
         this.tables = [];
         var that = this;
-        this.$tbl = null; 
+        this.$tbl = null;
         this._refreshHeader();
         this._refreshWidths();
         this._computeOuterWidths();
@@ -1482,11 +1482,11 @@ fnSB._setOptions=function(){
         this.$header = $(".pq-grid-header", this.$grid_right);
         this.$header_left = $(this.$header[0]);
         this.$header_right = $(this.$header[1]);
-        this.$bottom = $("div.pq-grid-bottom", this.element); 
+        this.$bottom = $("div.pq-grid-bottom", this.element);
         if (!this.options.bottomVisible) {
             this.$bottom.css("display", "none");
         }
-        this.$footer = $("div.pq-grid-footer", this.element); 
+        this.$footer = $("div.pq-grid-footer", this.element);
         this.$cont_o = $("div.pq-cont-right", this.$grid_right);
         this.$cont_fixed = $("div.pq-cont-fixed", this.$grid_right);
         this.$cont = $("div.pq-cont", this.$grid_right);
@@ -1626,12 +1626,12 @@ fnSB._setOptions=function(){
         this._refreshOptions();
         this._refreshTitle();
         var DM = this.options.dataModel;
-        if (DM.sortIndx != null  && DM.sorting == "local" && DM.location == "local") {    
+        if (DM.sortIndx != null  && DM.sorting == "local" && DM.location == "local") {
             this._refreshDataIndices();
             var colIndx = this.getColIndxFromDataIndx(DM.sortIndx);
-            this._sortLocalData(DM.sortIndx, DM.sortDir, this.colModel[colIndx].dataType, DM.data); 
+            this._sortLocalData(DM.sortIndx, DM.sortDir, this.colModel[colIndx].dataType, DM.data);
         }
-        this._initData(); 
+        this._initData();
         this._createSelectedRowsObject();
         this._createSelectedCellsObject();
         this._refresh();
@@ -1639,10 +1639,10 @@ fnSB._setOptions=function(){
     fn._onMouseWheel = function(evt) {
         var that = this;
         var num = 0;
-        var evt = evt.originalEvent; 
+        var evt = evt.originalEvent;
         if (evt.wheelDelta) {
             num = evt.wheelDelta / 120;
-        } else if (evt.detail) { 
+        } else if (evt.detail) {
             num = evt.detail * -1 / 3;
         }
         var cur_pos = parseInt(that.$vscroll.pqScrollBar('option', 'cur_pos'));
@@ -1668,7 +1668,7 @@ fnSB._setOptions=function(){
             colIndx: colIndx
         }) == false) {
             return false;
-        }        
+        }
         if (this.isEditableCell({colIndx: colIndx}) && that.options.editModel.clicksToEdit > 1) {
             that._setSelection(null);
             if (that.options.selectionModel.type == 'cell') {
@@ -1983,7 +1983,7 @@ fnSB._setOptions=function(){
             var that = this;
             this.generateLoading();
             this.remoteRequest();
-        } else { 
+        } else {
             this._refreshDataFromDataModel();
         }
     }
@@ -2000,7 +2000,7 @@ fnSB._setOptions=function(){
                 }
                 that.hidearrHS[i] = true;
             }
-        } else { 
+        } else {
         }
     }
     fn.generateLoading = function() {
@@ -2029,9 +2029,9 @@ fnSB._setOptions=function(){
         }
         if (DM.paging && DM.paging == 'local') {
             DM.totalRecords = DM.data.length;
-            DM.totalPages = Math.ceil(DM.data.length / DM.rPP); 
+            DM.totalPages = Math.ceil(DM.data.length / DM.rPP);
             if (DM.curPage > DM.totalPages) {
-                DM.curPage = DM.totalPages; 
+                DM.curPage = DM.totalPages;
             }
             if (DM.curPage < 1 && DM.totalPages > 0) {
                 DM.curPage = 1;
@@ -2047,7 +2047,7 @@ fnSB._setOptions=function(){
         }
     }
     fn.remoteRequest = function(callback_fn) {
-        if (this.loading) { 
+        if (this.loading) {
             this.xhr.abort();
         }
         var that = this;
@@ -2081,7 +2081,7 @@ fnSB._setOptions=function(){
             success: function(responseObj, textStatus, jqXHR) {
                 var dataLoaded = false;
                 if (typeof DM.getData == "function") {
-                    var retObj = DM.getData(responseObj, textStatus, jqXHR); 
+                    var retObj = DM.getData(responseObj, textStatus, jqXHR);
                     DM.data = retObj.data;
                     if (DM.paging) {
                         if (DM.paging == "remote") {
@@ -2094,7 +2094,7 @@ fnSB._setOptions=function(){
                         }
                     }
                     that._refreshDataFromDataModel();
-                    if (DM.sorting == "local" && DM.sortIndx != undefined) { 
+                    if (DM.sorting == "local" && DM.sortIndx != undefined) {
                         that._refreshSortingDataAndView({sorting: true});
                     } else {
                         that._refreshViewAfterDataSort();
@@ -2132,7 +2132,7 @@ fnSB._setOptions=function(){
         }
         var that = this;
         $.measureTime(function() {
-            fn.call(that); 
+            fn.call(that);
         }, '_generateTables');
         if (this.options.flexHeight) {
             this.setGridHeightFromTable();
@@ -2236,13 +2236,13 @@ fnSB._setOptions=function(){
     fn._refreshViewAfterDataSort = function() {
         this.selectCellRowCallback(function() {
             this.cTable._generateTables();
-            this._computeOuterWidths(); 
+            this._computeOuterWidths();
         })
         this._refreshHeaderSortIcons();
         this._setRightGridHeight();
-        this._setScrollVLength(); 
+        this._setScrollVLength();
         this._setScrollVNumEles(true);
-        this._setScrollHLength(); 
+        this._setScrollHLength();
         this._refreshPager();
     }
     fn.refreshSortingDataAndView = function() {
@@ -2430,9 +2430,9 @@ fnSB._setOptions=function(){
         }
     }
     fn._setOptions = function() {
-        $.Widget.prototype._setOptions.apply(this, arguments); 
+        $.Widget.prototype._setOptions.apply(this, arguments);
         if (this.refreshRequired) {
-            this._refresh(); 
+            this._refresh();
         }
         this.refreshRequired = true;
     }
@@ -2442,7 +2442,7 @@ fnSB._setOptions=function(){
                 that = this;
         if ($tr) {
             var wd = that._calcRightEdgeCol(that.colModel.length - 1);
-            wd -= 4; 
+            wd -= 4;
             var ht = $tr[0].offsetHeight - 4;
             var $table = $($tr[0].offsetParent);
             var offsetParent = $table[0].offsetParent;
@@ -2537,7 +2537,7 @@ fnSB._setOptions=function(){
                     htCont = this.$cont[0].offsetHeight,
                     htSB = this._getScollBarHorizontalHeight();
             if (td_bottom > htCont - htSB) {
-                var diff = td_bottom - (htCont - htSB); 
+                var diff = td_bottom - (htCont - htSB);
                 var $trs = this.$tbl.children().children("tr");
                 var ht = 0,
                         indx = 0;
@@ -2563,7 +2563,7 @@ fnSB._setOptions=function(){
                 tdneedsRefresh = false;
         var $td;
         if (this.hidearrHS[colIndx]) {
-            this.hidearrHS[colIndx] = false; 
+            this.hidearrHS[colIndx] = false;
             var cur_pos = colIndx - this.freezeCols - this._calcNumHiddenUnFrozens(colIndx);
             this.$hscroll.pqScrollBar("option", "cur_pos", cur_pos).pqScrollBar("scroll");
             tdneedsRefresh = true;
@@ -2578,7 +2578,7 @@ fnSB._setOptions=function(){
                 wd_scrollbar = 0;
             }
             if (td_right > this.$cont[0].offsetWidth - wd_scrollbar) {
-                var diff = this._calcWidthCols(colIndx) - (this.$cont[0].offsetWidth - wd_scrollbar); 
+                var diff = this._calcWidthCols(colIndx) - (this.$cont[0].offsetWidth - wd_scrollbar);
                 var $tds = $td.parent("tr").children("td");
                 var data_length = this.colModel.length;
                 var wd = 0,
@@ -2668,7 +2668,7 @@ fnSB._setOptions=function(){
         }
         this.bringRowIntoView({rowIndxPage: rowIndxPage});
         if (colIndx == null) {
-            return this.selectRow({rowIndx: rowIndx, evt: evt}); 
+            return this.selectRow({rowIndx: rowIndx, evt: evt});
         }
         this._bringCellIntoView({rowIndxPage: rowIndxPage, colIndx: colIndx});
         return this.selectCell({rowIndx: rowIndx, colIndx: colIndx, evt: evt});
@@ -2775,7 +2775,7 @@ fnSB._setOptions=function(){
     fn.quitEditMode = function(evt) {
         if (this.$td_edit) {
             var $td = this.$td_edit;
-            this.disableSelection(); 
+            this.disableSelection();
             this._setGridFocus();
             this._trigger("quitEditMode", evt, {
                 $td: $td,
@@ -2833,7 +2833,7 @@ fnSB._setOptions=function(){
         var that = this;
         window.setTimeout(function() {
             if (that.$td_edit == null) {
-                that.$grid_inner.focus(); 
+                that.$grid_inner.focus();
             }
         }, 0)
     }
@@ -2890,7 +2890,7 @@ fnSB._setOptions=function(){
                 colIndx = obj.colIndx,
                 column = this.colModel[colIndx],
                 dataIndx = column.dataIndx;
-        if (this.$td_edit && this.$td_edit[0] == $td[0]) { 
+        if (this.$td_edit && this.$td_edit[0] == $td[0]) {
             return false;
         }
         this.$td_edit = $td;
@@ -2979,7 +2979,7 @@ fnSB._setOptions=function(){
                 colIndx: null
             };
         var $tr = $td.parent("tr");
-        var $tbl = $tr.parent("tbody"); 
+        var $tbl = $tr.parent("tbody");
         var rowIndxPage = parseInt($tr.attr("pq-row-indx"));
         var colIndx = parseInt($td.attr("pq-col-indx"));
         return {
@@ -3149,7 +3149,7 @@ fnSB._setOptions=function(){
                 return false;
             }
             ;
-            if (evt.keyCode == keyCodes.tab) { 
+            if (evt.keyCode == keyCodes.tab) {
                 var obj;
                 if (evt.shiftKey) {
                     obj = that._decrEditIndx(rowIndxPage, colIndx);
@@ -3201,15 +3201,15 @@ fnSB._setOptions=function(){
                 evt.preventDefault();
                 return false;
             }
-            return; 
+            return;
         }
         else if (selectedRows.length > 0 && selectionModel.type == 'row') {
-            var obj = selectedRows[selectedRows.length - 1], 
+            var obj = selectedRows[selectedRows.length - 1],
                     rowIndx = obj.rowIndx, rowIndxPage = rowIndx - offset;
         }
         else {
             if (selectedCells.length > 0 && selectionModel.type == 'cell') {
-                var obj = selectedCells[selectedCells.length - 1], 
+                var obj = selectedCells[selectedCells.length - 1],
                         rowIndx = obj.rowIndx,
                         rowIndxPage = rowIndx - offset,
                         dataIndx = obj.dataIndx,
@@ -3354,7 +3354,7 @@ fnSB._setOptions=function(){
         } else {
             this.$hscroll.css("right", "");
         }
-        wd -= wdSB; 
+        wd -= wdSB;
         this.$hscroll.pqScrollBar("option", "length", wd);
     }
     fn._setScrollHNumEles = function() {
@@ -3582,7 +3582,7 @@ fnSB._setOptions=function(){
     fn._calcWidthCols = function(colIndx) {
         var wd = 0;
         if (this.numberCell) {
-            wd += this.numberCell_outerWidth; 
+            wd += this.numberCell_outerWidth;
         }
         for (var i = 0; i <= colIndx; i++) {
             if (!this.colModel[i].hidden)
@@ -3594,7 +3594,7 @@ fnSB._setOptions=function(){
         var wd = 0,
                 cols = 0;
         if (this.numberCell) {
-            wd += this.numberCell_outerWidth; 
+            wd += this.numberCell_outerWidth;
             cols++;
         }
         for (var i = 0; i <= colIndx; i++) {
@@ -3636,7 +3636,7 @@ fnSB._setOptions=function(){
         if (this.options.flexHeight || this.$vscroll.css("visibility") == "hidden") {
             wdSB = 0;
         }
-        var cont_right = that.$cont.offset().left + that.$cont[0].offsetWidth - wdSB + 20; 
+        var cont_right = that.$cont.offset().left + that.$cont[0].offsetWidth - wdSB + 20;
         $pQuery_drag.draggable("option", 'containment', [cont_left, 0, cont_right, 0]);
     }
     fn._getOrderIndx = function(indx) {
@@ -3831,7 +3831,7 @@ fnSB._setOptions=function(){
                 else if (col > 0 && column == headerCells[row][col - 1]) {
                     continue;
                 }
-                if (column.hidden) { 
+                if (column.hidden) {
                     continue;
                 }
                 var cls = "pq-grid-col";
@@ -3879,7 +3879,7 @@ fnSB._setOptions=function(){
         $header_right.css({left: "-" + lft + "px"});
         this.$header.find("td").click(function() {
             if (!that.options.sortable) {
-                return; 
+                return;
             }
             var colIndx = $(this).attr("pq-grid-col-indx");
             if (colIndx == null) {
@@ -3887,7 +3887,7 @@ fnSB._setOptions=function(){
             }
             var column = that.colModel[colIndx];
             if (column.sortable == false) {
-                return; 
+                return;
             }
             var dataIndx = column.dataIndx;
             if (that._trigger("beforeSort", null, {
@@ -3938,7 +3938,7 @@ fnSB._setOptions=function(){
             lft = parseInt(pq_col.offsetLeft) + parseInt((direction == "rtl") ? 0 : (pq_col.offsetWidth - 10));
             $handle.css({
                 left: lft,
-                height: hd_ht 
+                height: hd_ht
             });
         }
         var drag_left, drag_new_left, cl_left;
@@ -3947,7 +3947,7 @@ fnSB._setOptions=function(){
             helper: function(evt, ui) {
                 var $target = $(evt.target)
                 var indx = parseInt($target.attr("pq-grid-col-indx"));
-                that._setDragLimits(indx); 
+                that._setDragLimits(indx);
                 that._getDragHelper(evt, ui);
                 return $target;
             },
@@ -3997,7 +3997,7 @@ fnSB._setOptions=function(){
         buffer.push(row_str);
         if (this.numberCell) {
             buffer.push("<td style='width:" + this.numberCellWidth + "px;' class='pq-grid-number-cell pq-row-selector'>\
-		<div class='pq-td-div'></div></td>") 
+		<div class='pq-td-div'></div></td>")
         }
         var objRender = {rowIndx: rowIndx + offset, rowIndxPage: rowIndx, rowData: rowData, summaryCell: true};
         for (var col = 0; col < noColumns; col++) {
@@ -4012,14 +4012,14 @@ fnSB._setOptions=function(){
                     cellSelection = selectedDataIndices[dataIndx];
                 }
             }
-            if (column.hidden) { 
+            if (column.hidden) {
                 continue;
             }
             else if (this.hidearrHS[col]) {
                 continue;
             }
             var strStyle = "";
-            var cls = const_cls; 
+            var cls = const_cls;
             if (column.align == "right") {
                 cls += ' pq-align-right';
             } else if (column.align == "center") {
@@ -4048,7 +4048,7 @@ fnSB._setOptions=function(){
             objRender.colIndx = col;
             var strStyle = "";
             strStyle += "visibility:hidden;";
-            var cls = const_cls; 
+            var cls = const_cls;
             if (column.align == "right") {
                 cls += ' pq-align-right';
             } else if (column.align == "center") {
@@ -4077,7 +4077,7 @@ fnSB._setOptions=function(){
             for (var col = 0; col < noColumns; col++) {
                 var column = thisColModel[col],
                         dataIndx = column.dataIndx;
-                if (column.hidden) { 
+                if (column.hidden) {
                     var $td = $tr.find("td[pq-dataIndx='" + dataIndx + "']");
                     if ($td.length > 1) {
                         var $tds = $tbl.find("td[pq-dataIndx='" + dataIndx + "']").remove();
@@ -4090,7 +4090,7 @@ fnSB._setOptions=function(){
                     }
                 }
                 var strStyle = "";
-                var cls = const_cls; 
+                var cls = const_cls;
                 if (column.align == "right") {
                     cls += ' pq-align-right';
                 } else if (column.align == "center") {
@@ -4116,7 +4116,7 @@ fnSB._setOptions=function(){
                 objRender.colIndx = col;
                 var strStyle = "";
                 strStyle += "visibility:hidden;";
-                var cls = const_cls; 
+                var cls = const_cls;
                 if (column.align == "right") {
                     cls += ' pq-align-right';
                 } else if (column.align == "center") {
@@ -4148,7 +4148,7 @@ fnSB._setOptions=function(){
                 return dataType(val1, val2);
             }
             function sort_float(obj1, obj2) {
-                var val1 = (obj1[dataIndx] + "").replace(/,/g, ""); 
+                var val1 = (obj1[dataIndx] + "").replace(/,/g, "");
                 var val2 = (obj2[dataIndx] + "").replace(/,/g, "");
                 val1 = val1 ? parseFloat(val1) : 0;
                 val2 = val2 ? parseFloat(val2) : 0;
@@ -4181,7 +4181,7 @@ fnSB._setOptions=function(){
                 data = data.reverse();
             }
         }
-        $.measureTime(innerSort, "innerSort"); 
+        $.measureTime(innerSort, "innerSort");
     }
     $.widget("paramquery.pqGrid", fn);
     $.paramquery.pqGrid.regional = {};

@@ -10,7 +10,6 @@ pathName = location.protocol + "//" + location.host + pathName.replace("//", "/"
 var gridCreated = false;
 
 $(document).on("ready", function () {
-
     PopulateEthDropdown();
     PopulateTitlesDropdown();
     PopulateCategoriesDropdown()
@@ -19,7 +18,7 @@ $(document).on("ready", function () {
 
     /*========= Event Handlers ============*/
     $("#btnSearch").on("click", function (e) {
-        if(gridCreated){
+        if (gridCreated) {
             $("#pqDbGrid").pqGrid("destroy");
         }
         InitializeGrid($('#txtSearch').val());
@@ -28,13 +27,12 @@ $(document).on("ready", function () {
     $("#txtSearch").keypress(function (e) {
         if (e.which === 13) {
             e.preventDefault();
-            if (gridCreated){
+            if (gridCreated) {
                 $("#pqDbGrid").pqGrid("destroy");
             }
             InitializeGrid($("#txtSearch").val());
         }
     });
-
 });
 
 function PopulateEthDropdown() {
@@ -81,7 +79,6 @@ function PopulateCategoriesDropdown() {
         }
     })
 }
-
 
 function InitializeGrid(searchTerm) {
     var testStr = searchTerm.replace(/\s+/g, "")
@@ -170,7 +167,7 @@ function InitializeGrid(searchTerm) {
                         var data = DM.data;
                         var rIndx = getRowIndx();
                         var row = data[rIndx];
-                        
+
                         $("#firstLastName").text(row.firstName + " " + row.lastName);
                         $("#ethnicity").val(row.ethnicityID);
                         $("#title").val(row.titleID);
@@ -194,7 +191,6 @@ function InitializeGrid(searchTerm) {
                                     //ResaveDbData();
 
                                     $(this).dialog("close");
-
                                 },
                                 Cancel: function () {
                                     $(this).dialog("close");
@@ -252,13 +248,11 @@ function saveFromDbEditDlg() {
     var row = data[rowIndx];
 
     var param = "Home/ResaveDbData";
-    param += "?employeeId=" + row[0]; 
+    param += "?employeeId=" + row[0];
     param += "&ethId=" + row[3];
 
     var x = $.ajax({ type: "GET", dataType: "json", url: pathName + param, cache: false });
     x.done(function (args) {
         alert(args);
     })
-
 }
-
