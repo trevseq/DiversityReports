@@ -51,13 +51,7 @@ namespace DiversityReports.Controllers
         }
 
         // Needs editing...
-        /// <summary>
-        /// Saves the edited user's information back into the ADP Feed database.
-        /// </summary>
-        /// <param name="employeeId">Employee's ID number to find the appropriate record</param>
-        /// <param name="ethId">Employee's Ethnicity ID</param>
-        /// <returns>boolean "_success" as a json string</returns>
-        public ActionResult ResaveDbData(int employeeId, int ethId)
+        public ActionResult ResaveDbData(int employeeId, int ethId, int titleId, int catId)
         {
             //TODO: verify that title has a link to the category- if not, create one.
             var db = new ADP_FeedEntities();

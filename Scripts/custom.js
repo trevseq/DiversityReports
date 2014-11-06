@@ -245,11 +245,14 @@ function hideRow(indx) {
 function saveFromDbEditDlg() {
     var DM = $grid.pqGrid("option", "dataModel");
     var data = DM.data;
+    var rowIndx = getRowIndx();
     var row = data[rowIndx];
 
     var param = "Home/ResaveDbData";
     param += "?employeeId=" + row[0];
-    param += "&ethId=" + row[3];
+    param += "&ethId=" + $("#ethnicity").val();
+    param += "&titleId=" + $("#title").val();
+    param += "&catId=" + $("#category").val();
 
     var x = $.ajax({ type: "GET", dataType: "json", url: pathName + param, cache: false });
     x.done(function (args) {
