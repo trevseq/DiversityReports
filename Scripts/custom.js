@@ -4,6 +4,7 @@
 pathName = pathName.replace("default", "");
 pathName = pathName.replace("home", "");
 
+// TODO: fix these two lines...
 pathName += ((pathName.substring(pathName.length - 1) != "/") ? "/" : "");
 pathName = location.protocol + "//" + location.host + pathName.replace("//", "/");
 
@@ -83,25 +84,15 @@ function PopulateCategoriesDropdown() {
 function InitializeGrid(searchTerm) {
     var testStr = searchTerm.replace(/\s+/g, "")
     if (/^[a-z0-9]+$/i.test(testStr)) {
-        //  var data = [];
         var a = $.ajax({
             type: "GET",
             dataType: "JSON",
             url: pathName + "Home/PopulateGrid?str=" + searchTerm,
             cache: false
-            //,done: function (d) {
-            //    data = d;
-            //   // console.log(data);
-            //    //for (var i in d) {
-            //    //    data.push([i, d[i]]);
-            //    //}
-
-            //}
         });
 
         a.done(function (tempdata) {
             var oneRow;
-            //delete tempdata["__proto__"];
             var data = $(tempdata).toArray();
             if (data.length === 0) {
                 alert("No records found!")
@@ -124,22 +115,12 @@ function InitializeGrid(searchTerm) {
                 ];
 
                 obj.dataModel = {
-                    //location: "remote",
                     data: data,
                     location: "local",
                     sorting: "local",
                     paging: "local",
                     dataType: "string",
-                    //method: "GET",
-                    //url: qUrl,
-                    //sortIndx: 1,
-                    //sortDir: "up",
                     rPP: 20,
-                    //getData: function (dataJSON) {
-                    //debugger;
-                    //var data = dataJSON.data;
-                    //return { data: dataJSON.data };
-                    //}
                 };
 
                 var $grid = $("#pqDbGrid").pqGrid(obj);
@@ -157,7 +138,6 @@ function InitializeGrid(searchTerm) {
                 $grid.pqGrid("option", "resizable", false);
                 $grid.pqGrid("option", "sortable", true);
                 $grid.pqGrid("option", "roundCorners", false);
-                //$grid.pqGrid("option", "editable", true);
                 $grid.pqGrid("option", "selectionModel", { type: 'row', mode: 'single' });
                 $grid.pqGrid("option", "wrap", true);
                 $grid.on("pqgridcellsave", function (event, ui) { });
@@ -218,18 +198,11 @@ function InitializeGrid(searchTerm) {
 }
 
 function getRowIndx() {
-    //var $grid = $("#grid_render_cells");
     var $grid = $("#pqDbGrid");
-    //var obj = $grid.pqGrid("getSelection");
-    //debugger;
-    //  alert($grid);
     var arr = $grid.pqGrid("selection", { type: 'row', method: 'getSelection' });
 
     if (arr && arr.length > 0) {
         var rowIndx = arr[0].rowIndx;
-
-        //if (rowIndx != null && colIndx == null) {
-        //console.log(rowIndx);
         return rowIndx;
     }
     else {
