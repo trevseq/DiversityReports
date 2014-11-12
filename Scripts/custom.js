@@ -25,6 +25,7 @@ $(document).on("ready", function () {
         InitializeGrid($('#txtSearch').val());
     });
 
+    // Enter key triggers search
     $("#txtSearch").keypress(function (e) {
         if (e.which === 13) {
             e.preventDefault();
@@ -36,6 +37,7 @@ $(document).on("ready", function () {
     });
 });
 
+// Fills in the options for the ethnicities dropdown menu
 function PopulateEthDropdown() {
     $.ajax({
         type: "GET",
@@ -51,6 +53,7 @@ function PopulateEthDropdown() {
     })
 }
 
+// Fills in the options for the titles dropdown menu
 function PopulateTitlesDropdown() {
     $.ajax({
         type: "GET",
@@ -66,6 +69,7 @@ function PopulateTitlesDropdown() {
     })
 }
 
+// Fills in the options for the categories dropdown menu
 function PopulateCategoriesDropdown() {
     $.ajax({
         type: "GET",
@@ -81,6 +85,7 @@ function PopulateCategoriesDropdown() {
     })
 }
 
+// Initializes the fancy grid and fills it with the data returned from the employee search
 function InitializeGrid(searchTerm) {
     var testStr = searchTerm.replace(/\s+/g, "")
     if (/^[a-z0-9]+$/i.test(testStr)) {
@@ -197,6 +202,7 @@ function InitializeGrid(searchTerm) {
     }
 }
 
+// Gets the index of the currently selected row
 function getRowIndx() {
     var $grid = $("#pqDbGrid");
     var arr = $grid.pqGrid("selection", { type: 'row', method: 'getSelection' });
@@ -211,10 +217,12 @@ function getRowIndx() {
     }
 }
 
+// Hides a row based on the index (used for hiding the dummy row - PQ does not support a grid with only one row of data)
 function hideRow(indx) {
     $("tr[pq-row-indx='" + indx + "']").hide()
 }
 
+// Ajax for saving the data from the edit dialogs
 function saveFromDbEditDlg() {
     var DM = $grid.pqGrid("option", "dataModel");
     var data = DM.data;
