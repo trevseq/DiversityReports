@@ -28,7 +28,6 @@ namespace DiversityReports.Controllers
                         join c in db.EEO_Category on p.EEOCategory_ID equals c.EEOCategory_ID
                         join t in db.Titles on p.JobTitle equals t.TitleID
                         where str.Contains(p.EmployeeID.ToString()) || str.Contains(p.FirstName) || str.Contains(p.LastName) || str.Contains(p.PreferredFirstName) || str.Contains(p.PreferredLastName)
-                        //p.EmployeeID.Equals(str) || (p.FirstName.IndexOf(str) > -1) || (p.LastName.IndexOf(str) > -1)
 
                         select new
                         {
@@ -41,7 +40,7 @@ namespace DiversityReports.Controllers
                             title = t.Title1,
                             categoryID = p.EEOCategory_ID,
                             category = c.EEOCategory_Desc
-                        });//.FirstOrDefault();
+                        });
 
             return new JsonResult()
             {
@@ -50,7 +49,7 @@ namespace DiversityReports.Controllers
             };
         }
 
-        // Needs editing...
+        // TODO: Fix me!
         public ActionResult ResaveDbData(int employeeId, int ethId, int titleId, int catId)
         {
             //TODO: verify that title has a link to the category- if not, create one.
